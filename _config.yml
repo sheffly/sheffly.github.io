@@ -1,6 +1,6 @@
-title: your blog
-description: a small anonymous blog.
-author: anonymous
+title: let my heart be still/and this mystery explore
+description: thoughts
+author: anonymous unless u know me
 
 theme: minima
 
@@ -15,7 +15,7 @@ plugins:
 # url + baseurl: fill these in once you know your github pages address.
 # if your repo is "yourusername.github.io", leave baseurl blank.
 # if your repo has any other name, set baseurl to "/that-repo-name".
-url: ""
+url: "sheffly.github.io"
 baseurl: ""
 
 exclude:
