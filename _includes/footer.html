@@ -1,0 +1,22 @@
+<footer class="site-footer">
+  <div class="hit-counter" aria-hidden="true">VISITOR NO. <b>003741</b></div>
+
+  <div class="footer-links">
+    <a href="{{ '/' | relative_url }}">home</a>
+    <a href="{{ '/about/' | relative_url }}">about</a>
+    <a href="{{ '/feed.xml' | relative_url }}">rss</a>
+  </div>
+
+  <p class="blink">&#9733; thanks for stopping by &#9733;</p>
+
+  <!-- old-web 88x31 badge row. swap these for real ones, add a webring,
+       or delete this whole div — totally optional. -->
+  <div class="badge-row">
+    <a href="{{ '/' | relative_url }}">THIS SITE<br>IS ANALOG</a>
+    <a href="{{ '/feed.xml' | relative_url }}">RSS<br>OR DIE</a>
+    <a href="#">NO<br>COOKIES</a>
+    <a href="#">MADE ON<br>A SUNDAY</a>
+  </div>
+
+  <p class="footer-note">&copy; {{ site.time | date: '%Y' }} &mdash; no real name attached.</p>
+</footer>
