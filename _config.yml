@@ -1,0 +1,26 @@
+title: your blog
+description: a small anonymous blog.
+author: anonymous
+
+theme: minima
+
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# url + baseurl: fill these in once you know your github pages address.
+# if your repo is "yourusername.github.io", leave baseurl blank.
+# if your repo has any other name, set baseurl to "/that-repo-name".
+url: ""
+baseurl: ""
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - node_modules
+  - vendor
