@@ -1,18 +1,18 @@
-<!--
+{% comment %}
   reusable ipod-nano-style music widget.
 
   usage (drop this anywhere in a post or page):
 
-  {% include ipod-player.html
+  {% raw %}{% include ipod-player.html
      id="chanels"
      audio="/assets/audio/brand-new-chanels.mp3"
      image="/assets/images/album-brand-new-chanels.png"
      title="brand new chanel$"
-     artist="Slayyyter" %}
+     artist="Slayyyter" %}{% endraw %}
 
   `id` just needs to be unique on the page if you use this more than
   once — it keeps each player's controls wired to its own <audio>.
--->
+{% endcomment %}
 <div class="ipod-nano" data-ipod-id="{{ include.id | default: "player" }}">
   <div class="ipod-body">
     <div class="ipod-screen">
