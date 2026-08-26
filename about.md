@@ -4,4 +4,4 @@ title: About
 permalink: /about/
 ---
 
-i hate myself a lot but am trying to work on not doing that? i love finding patterns, drawing parallels, and theorizing about them
+trying to work on liking myself more!♡♡♡♡♡♡ and on, like, not sharing every thought i have publicly. i mean, this is still doing that but this way it's not uh. OBVIOUSLY me. tho if u find this, and you know me irl, it's like uber clear who i am. sry!!!!
