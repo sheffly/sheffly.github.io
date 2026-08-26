@@ -1,0 +1,49 @@
+<!--
+  reusable ipod-nano-style music widget.
+
+  usage (drop this anywhere in a post or page):
+
+  {% include ipod-player.html
+     id="chanels"
+     audio="/assets/audio/brand-new-chanels.mp3"
+     image="/assets/images/album-brand-new-chanels.png"
+     title="brand new chanel$"
+     artist="Slayyyter" %}
+
+  `id` just needs to be unique on the page if you use this more than
+  once — it keeps each player's controls wired to its own <audio>.
+-->
+<div class="ipod-nano" data-ipod-id="{{ include.id | default: "player" }}">
+  <div class="ipod-body">
+    <div class="ipod-screen">
+      <div class="ipod-screen-top">
+        <span>now playing</span>
+        <span class="ipod-play-glyph" data-role="glyph">&#9654;</span>
+      </div>
+      {% if include.image %}
+      <img class="ipod-art" src="{{ include.image | relative_url }}" alt="">
+      {% endif %}
+      <div class="ipod-track-info">
+        <div class="ipod-track-title">{{ include.title | default: "untitled" }}</div>
+        {% if include.artist %}<div class="ipod-track-artist">{{ include.artist }}</div>{% endif %}
+      </div>
+      <div class="ipod-progress-row">
+        <span class="ipod-time" data-role="elapsed">0:00</span>
+        <div class="ipod-progress-track" data-role="seek">
+          <div class="ipod-progress-fill" data-role="fill"></div>
+        </div>
+        <span class="ipod-time" data-role="duration">0:00</span>
+      </div>
+    </div>
+
+    <div class="ipod-wheel">
+      <span class="ipod-wheel-label ipod-menu" data-role="menu">menu</span>
+      <span class="ipod-wheel-label ipod-prev" data-role="prev">&#9668;&#9668;</span>
+      <span class="ipod-wheel-label ipod-next" data-role="next">&#9658;&#9658;</span>
+      <span class="ipod-wheel-label ipod-playpause-label" data-role="playpause-label">&#9658;&#10073;&#10073;</span>
+      <button class="ipod-center" type="button" data-role="playpause" aria-label="play or pause"></button>
+    </div>
+  </div>
+
+  <audio data-role="audio" preload="none" src="{{ include.audio | relative_url }}"></audio>
+</div>
