@@ -298,6 +298,17 @@ a:visited { color: #ff8fc7; }
   margin-top: 2rem;
 }
 
+/* full single-post pages get the same inverted heart-pattern texture
+   as the post-list cards (grey/near-black field, black hearts) — the
+   .post-panel class is only added by _layouts/post.html, so the
+   homepage intro panel and plain pages (about, tags) keep the flat
+   --panel background. */
+.post-panel {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='9' height='8' viewBox='0 0 9 8' fill='%23000000'><rect x='2' y='1' width='1' height='1'/><rect x='3' y='1' width='1' height='1'/><rect x='5' y='1' width='1' height='1'/><rect x='6' y='1' width='1' height='1'/><rect x='1' y='2' width='1' height='1'/><rect x='2' y='2' width='1' height='1'/><rect x='3' y='2' width='1' height='1'/><rect x='4' y='2' width='1' height='1'/><rect x='5' y='2' width='1' height='1'/><rect x='6' y='2' width='1' height='1'/><rect x='7' y='2' width='1' height='1'/><rect x='1' y='3' width='1' height='1'/><rect x='2' y='3' width='1' height='1'/><rect x='3' y='3' width='1' height='1'/><rect x='4' y='3' width='1' height='1'/><rect x='5' y='3' width='1' height='1'/><rect x='6' y='3' width='1' height='1'/><rect x='7' y='3' width='1' height='1'/><rect x='2' y='4' width='1' height='1'/><rect x='3' y='4' width='1' height='1'/><rect x='4' y='4' width='1' height='1'/><rect x='5' y='4' width='1' height='1'/><rect x='6' y='4' width='1' height='1'/><rect x='3' y='5' width='1' height='1'/><rect x='4' y='5' width='1' height='1'/><rect x='5' y='5' width='1' height='1'/><rect x='4' y='6' width='1' height='1'/></svg>");
+  background-color: #0a0a0b;
+  background-size: 36px 32px;
+}
+
 .panel h1, .panel h2, .panel h3 {
   font-family: "Doto", sans-serif;
   font-weight: 800;

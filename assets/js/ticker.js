@@ -33,7 +33,7 @@
     return; // static single copy, no animation, no extra clones needed
   }
 
-  var PX_PER_SEC = 55;  // constant scroll speed
+  var PX_PER_SEC = 45;  // constant scroll speed
   var PX_PER_STEP = 5;  // constant jump size -> constant "choppiness"
 
   function build() {
