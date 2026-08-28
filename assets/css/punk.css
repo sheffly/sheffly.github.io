@@ -168,34 +168,44 @@ a:visited { color: #ff8fc7; }
   border-bottom: 3px solid #000;
 }
 
-/* two identical copies of the text, side by side, scrolled by exactly
-   half the track's width — copy 2 lands where copy 1 started just as
-   copy 1 scrolls off, so the loop has no gap/blank pause. */
+/* ticker.js measures .ticker-text and clones it into .ticker-copies —
+   just enough copies to cover the widest viewport plus one — so
+   .ticker-track ends up holding N back-to-back IDENTICAL-width copies
+   with zero whitespace between them (they're appended via JS, so there
+   are no stray text nodes to render as a gap, unlike hand-written
+   duplicate HTML). translateX(-100%) then shifts the WHOLE track by
+   its own total width, which is an exact multiple of one copy's width
+   — so the pattern lines back up with itself perfectly and the loop
+   has no seam or pause, at any viewport size. ticker.js also sets
+   --ticker-duration and --ticker-steps so both the scroll speed and
+   the "choppiness" (px per stepped jump) stay constant no matter how
+   many copies that ends up being. */
 .ticker-track {
-  display: inline-flex;
+  display: flex;
+  flex-direction: row;
   width: max-content;
-  /* stepped, not smooth — ticks across like an old LED/split-flap sign
-     instead of gliding. still translateX(0) -> -50% -> loops forever
-     (infinite), just in visible discrete jumps. */
-  animation: ticker-scroll 18s steps(90, end) infinite;
+  animation: ticker-scroll var(--ticker-duration, 18s) steps(var(--ticker-steps, 90), end) infinite;
 }
 
-.ticker-track span {
-  display: inline-block;
-  /* no gap between copies — the string already opens and closes on a
-     "★", so back-to-back copies read as one continuous "★★" seam and
-     the loop repeats immediately instead of pausing on blank space. */
-  padding-right: 0;
+.ticker-text {
+  display: block;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.ticker-copies {
+  display: flex;
+  flex-direction: row;
 }
 
 @keyframes ticker-scroll {
   from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  to   { transform: translateX(-100%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .ticker-track { animation: none; }
-  .ticker-track span:nth-child(2) { display: none; }
+  .ticker-copies { display: none; }
 }
 
 /* ---------- shell ---------- */
@@ -586,6 +596,12 @@ a:visited { color: #ff8fc7; }
 .ipod-nano {
   width: 220px;
   margin: 2rem auto;
+}
+
+/* only sways while a track is actually playing (ipod-player.js toggles
+   this class on play/pause) — sits still the rest of the time instead
+   of looping forever regardless of playback state. */
+.ipod-nano.is-playing {
   /* two-frame switch, not a smooth sway — steps(2, jump-none) splits the
      10s cycle into two flat 5s poses with one instant jump between them,
      like a stop-motion/analog toy instead of an eased css tween. */
