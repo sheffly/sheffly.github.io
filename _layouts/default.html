@@ -9,6 +9,22 @@
     </main>
     {% include footer.html %}
   </div>
+
+  {% comment %}
+    persistent sidebar player — shows on every page, not just wherever
+    it's embedded in a post. on narrow viewports it drops out of the
+    fixed sidebar and flows inline near the bottom of the page instead
+    (see .ipod-sidebar media query in punk.css).
+  {% endcomment %}
+  <div class="ipod-sidebar">
+    {% include ipod-player.html
+       id="chanels-sidebar"
+       audio="/assets/audio/brand-new-chanels.mp3"
+       image="/assets/images/album-brand-new-chanels.png"
+       title="brand new chanel$"
+       artist="Slayyyter" %}
+  </div>
+
   <script src="{{ '/assets/js/cursor.js' | relative_url }}" defer></script>
   <script src="{{ '/assets/js/ipod-player.js' | relative_url }}" defer></script>
 </body>

@@ -21,7 +21,7 @@ body {
   cursor: url("../images/cursor-heart.png") 0 0, auto;
 }
 
-a, button, .tag, .badge-row a, .site-nav a, .footer-links a {
+a, button, .tag, .site-nav a, .footer-links a {
   cursor: url("../images/cursor-heart-link.png") 6 0, pointer;
 }
 
@@ -81,6 +81,35 @@ html.cute-cursor-active * {
 
 * { box-sizing: border-box; }
 
+/* ---------- pixel-corner utility ----------
+   an asymmetric pixel "torn corner" staircase instead of a smooth
+   border-radius curve: a 3-step notch cut into the top-left corner, a
+   smaller 2-step notch cut into the bottom-right, and the other two
+   corners stay plain right angles. applied to every boxy element
+   (panels, post cards, tags, nav links, badges...) so the whole theme's
+   edges read as blocky instead of smooth. tweak --pcu (one step's size)
+   per element. */
+
+.pixel-corners {
+  --pcu: 6px;
+  clip-path: polygon(
+    calc(var(--pcu) * 3) 0,
+    100% 0,
+    100% calc(100% - var(--pcu) * 2),
+    calc(100% - var(--pcu)) calc(100% - var(--pcu) * 2),
+    calc(100% - var(--pcu)) calc(100% - var(--pcu)),
+    calc(100% - var(--pcu) * 2) calc(100% - var(--pcu)),
+    calc(100% - var(--pcu) * 2) 100%,
+    0 100%,
+    0 calc(var(--pcu) * 3),
+    var(--pcu) calc(var(--pcu) * 3),
+    var(--pcu) calc(var(--pcu) * 2),
+    calc(var(--pcu) * 2) calc(var(--pcu) * 2),
+    calc(var(--pcu) * 2) var(--pcu),
+    calc(var(--pcu) * 3) var(--pcu)
+  );
+}
+
 html, body {
   margin: 0;
   background: var(--bg);
@@ -91,8 +120,12 @@ body {
   font-family: Verdana, Geneva, "Segoe UI", sans-serif;
   font-size: 1.05rem;
   line-height: 1.7;
-  background-image:
-    repeating-linear-gradient(45deg, #0a0a0c 0 12px, #040404 12px 24px);
+  /* tiled filled pixel hearts, same two near-black tones the diagonal
+     stripes used to be — same subtlety, just a heart instead of a
+     stripe when you look closely. */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='9' height='8' viewBox='0 0 9 8' fill='%230a0a0c'><rect x='2' y='1' width='1' height='1'/><rect x='3' y='1' width='1' height='1'/><rect x='5' y='1' width='1' height='1'/><rect x='6' y='1' width='1' height='1'/><rect x='1' y='2' width='1' height='1'/><rect x='2' y='2' width='1' height='1'/><rect x='3' y='2' width='1' height='1'/><rect x='4' y='2' width='1' height='1'/><rect x='5' y='2' width='1' height='1'/><rect x='6' y='2' width='1' height='1'/><rect x='7' y='2' width='1' height='1'/><rect x='1' y='3' width='1' height='1'/><rect x='2' y='3' width='1' height='1'/><rect x='3' y='3' width='1' height='1'/><rect x='4' y='3' width='1' height='1'/><rect x='5' y='3' width='1' height='1'/><rect x='6' y='3' width='1' height='1'/><rect x='7' y='3' width='1' height='1'/><rect x='2' y='4' width='1' height='1'/><rect x='3' y='4' width='1' height='1'/><rect x='4' y='4' width='1' height='1'/><rect x='5' y='4' width='1' height='1'/><rect x='6' y='4' width='1' height='1'/><rect x='3' y='5' width='1' height='1'/><rect x='4' y='5' width='1' height='1'/><rect x='5' y='5' width='1' height='1'/><rect x='4' y='6' width='1' height='1'/></svg>");
+  background-color: #040404;
+  background-size: 36px 32px;
 }
 
 a { color: var(--pink); text-decoration: underline; }
@@ -128,7 +161,10 @@ a:visited { color: #ff8fc7; }
 
 .ticker-track span {
   display: inline-block;
-  padding-right: 3rem;
+  /* no gap between copies — the string already opens and closes on a
+     "★", so back-to-back copies read as one continuous "★★" seam and
+     the loop repeats immediately instead of pausing on blank space. */
+  padding-right: 0;
 }
 
 @keyframes ticker-scroll {
@@ -194,6 +230,16 @@ a:visited { color: #ff8fc7; }
 }
 
 .site-nav a {
+  --pcu: 3px;
+  clip-path: polygon(
+    calc(var(--pcu) * 3) 0, 100% 0,
+    100% calc(100% - var(--pcu) * 2), calc(100% - var(--pcu)) calc(100% - var(--pcu) * 2),
+    calc(100% - var(--pcu)) calc(100% - var(--pcu)), calc(100% - var(--pcu) * 2) calc(100% - var(--pcu)),
+    calc(100% - var(--pcu) * 2) 100%, 0 100%,
+    0 calc(var(--pcu) * 3), var(--pcu) calc(var(--pcu) * 3),
+    var(--pcu) calc(var(--pcu) * 2), calc(var(--pcu) * 2) calc(var(--pcu) * 2),
+    calc(var(--pcu) * 2) var(--pcu), calc(var(--pcu) * 3) var(--pcu)
+  );
   color: var(--ink);
   background: #000;
   border: 2px solid var(--pink);
@@ -208,6 +254,16 @@ a:visited { color: #ff8fc7; }
 /* ---------- content panel ---------- */
 
 .panel {
+  --pcu: 6px;
+  clip-path: polygon(
+    calc(var(--pcu) * 3) 0, 100% 0,
+    100% calc(100% - var(--pcu) * 2), calc(100% - var(--pcu)) calc(100% - var(--pcu) * 2),
+    calc(100% - var(--pcu)) calc(100% - var(--pcu)), calc(100% - var(--pcu) * 2) calc(100% - var(--pcu)),
+    calc(100% - var(--pcu) * 2) 100%, 0 100%,
+    0 calc(var(--pcu) * 3), var(--pcu) calc(var(--pcu) * 3),
+    var(--pcu) calc(var(--pcu) * 2), calc(var(--pcu) * 2) calc(var(--pcu) * 2),
+    calc(var(--pcu) * 2) var(--pcu), calc(var(--pcu) * 3) var(--pcu)
+  );
   background: var(--panel);
   border: 4px solid var(--pink);
   box-shadow: 8px 8px 0 #000, 8px 8px 0 4px var(--pink);
@@ -246,6 +302,16 @@ a:visited { color: #ff8fc7; }
 }
 
 .panel pre {
+  --pcu: 3px;
+  clip-path: polygon(
+    calc(var(--pcu) * 3) 0, 100% 0,
+    100% calc(100% - var(--pcu) * 2), calc(100% - var(--pcu)) calc(100% - var(--pcu) * 2),
+    calc(100% - var(--pcu)) calc(100% - var(--pcu)), calc(100% - var(--pcu) * 2) calc(100% - var(--pcu)),
+    calc(100% - var(--pcu) * 2) 100%, 0 100%,
+    0 calc(var(--pcu) * 3), var(--pcu) calc(var(--pcu) * 3),
+    var(--pcu) calc(var(--pcu) * 2), calc(var(--pcu) * 2) calc(var(--pcu) * 2),
+    calc(var(--pcu) * 2) var(--pcu), calc(var(--pcu) * 3) var(--pcu)
+  );
   background: #000;
   border: 2px solid var(--pink-deep);
   padding: 1rem;
@@ -254,13 +320,36 @@ a:visited { color: #ff8fc7; }
 
 .panel pre code { background: none; padding: 0; color: var(--ink); }
 
-.panel img { max-width: 100%; border: 3px solid var(--pink); }
+.panel img {
+  --pcu: 4px;
+  clip-path: polygon(
+    calc(var(--pcu) * 3) 0, 100% 0,
+    100% calc(100% - var(--pcu) * 2), calc(100% - var(--pcu)) calc(100% - var(--pcu) * 2),
+    calc(100% - var(--pcu)) calc(100% - var(--pcu)), calc(100% - var(--pcu) * 2) calc(100% - var(--pcu)),
+    calc(100% - var(--pcu) * 2) 100%, 0 100%,
+    0 calc(var(--pcu) * 3), var(--pcu) calc(var(--pcu) * 3),
+    var(--pcu) calc(var(--pcu) * 2), calc(var(--pcu) * 2) calc(var(--pcu) * 2),
+    calc(var(--pcu) * 2) var(--pcu), calc(var(--pcu) * 3) var(--pcu)
+  );
+  max-width: 100%;
+  border: 3px solid var(--pink);
+}
 
 /* ---------- post list ---------- */
 
 .post-list { list-style: none; margin: 0; padding: 0; }
 
 .post-list li {
+  --pcu: 5px;
+  clip-path: polygon(
+    calc(var(--pcu) * 3) 0, 100% 0,
+    100% calc(100% - var(--pcu) * 2), calc(100% - var(--pcu)) calc(100% - var(--pcu) * 2),
+    calc(100% - var(--pcu)) calc(100% - var(--pcu)), calc(100% - var(--pcu) * 2) calc(100% - var(--pcu)),
+    calc(100% - var(--pcu) * 2) 100%, 0 100%,
+    0 calc(var(--pcu) * 3), var(--pcu) calc(var(--pcu) * 3),
+    var(--pcu) calc(var(--pcu) * 2), calc(var(--pcu) * 2) calc(var(--pcu) * 2),
+    calc(var(--pcu) * 2) var(--pcu), calc(var(--pcu) * 3) var(--pcu)
+  );
   background: var(--panel);
   border: 3px solid var(--pink);
   padding: 1rem 1.25rem;
@@ -319,6 +408,16 @@ a:visited { color: #ff8fc7; }
 /* ---------- tags / badges ---------- */
 
 .tag {
+  --pcu: 2px;
+  clip-path: polygon(
+    calc(var(--pcu) * 3) 0, 100% 0,
+    100% calc(100% - var(--pcu) * 2), calc(100% - var(--pcu)) calc(100% - var(--pcu) * 2),
+    calc(100% - var(--pcu)) calc(100% - var(--pcu)), calc(100% - var(--pcu) * 2) calc(100% - var(--pcu)),
+    calc(100% - var(--pcu) * 2) 100%, 0 100%,
+    0 calc(var(--pcu) * 3), var(--pcu) calc(var(--pcu) * 3),
+    var(--pcu) calc(var(--pcu) * 2), calc(var(--pcu) * 2) calc(var(--pcu) * 2),
+    calc(var(--pcu) * 2) var(--pcu), calc(var(--pcu) * 3) var(--pcu)
+  );
   display: inline-block;
   font-family: "Space Mono", monospace;
   font-size: 0.7rem;
@@ -355,6 +454,16 @@ a:visited { color: #ff8fc7; }
 .site-footer { margin-top: 3rem; text-align: center; }
 
 .hit-counter {
+  --pcu: 3px;
+  clip-path: polygon(
+    calc(var(--pcu) * 3) 0, 100% 0,
+    100% calc(100% - var(--pcu) * 2), calc(100% - var(--pcu)) calc(100% - var(--pcu) * 2),
+    calc(100% - var(--pcu)) calc(100% - var(--pcu)), calc(100% - var(--pcu) * 2) calc(100% - var(--pcu)),
+    calc(100% - var(--pcu) * 2) 100%, 0 100%,
+    0 calc(var(--pcu) * 3), var(--pcu) calc(var(--pcu) * 3),
+    var(--pcu) calc(var(--pcu) * 2), calc(var(--pcu) * 2) calc(var(--pcu) * 2),
+    calc(var(--pcu) * 2) var(--pcu), calc(var(--pcu) * 3) var(--pcu)
+  );
   display: inline-block;
   background: #000;
   border: 2px solid var(--pink);
@@ -392,6 +501,16 @@ a:visited { color: #ff8fc7; }
 }
 
 .footer-links a {
+  --pcu: 3px;
+  clip-path: polygon(
+    calc(var(--pcu) * 3) 0, 100% 0,
+    100% calc(100% - var(--pcu) * 2), calc(100% - var(--pcu)) calc(100% - var(--pcu) * 2),
+    calc(100% - var(--pcu)) calc(100% - var(--pcu)), calc(100% - var(--pcu) * 2) calc(100% - var(--pcu)),
+    calc(100% - var(--pcu) * 2) 100%, 0 100%,
+    0 calc(var(--pcu) * 3), var(--pcu) calc(var(--pcu) * 3),
+    var(--pcu) calc(var(--pcu) * 2), calc(var(--pcu) * 2) calc(var(--pcu) * 2),
+    calc(var(--pcu) * 2) var(--pcu), calc(var(--pcu) * 3) var(--pcu)
+  );
   color: var(--ink);
   background: #000;
   border: 2px solid var(--pink);
@@ -411,7 +530,17 @@ a:visited { color: #ff8fc7; }
   margin: 1.25rem 0;
 }
 
-.badge-row a {
+.badge-row span {
+  --pcu: 2px;
+  clip-path: polygon(
+    calc(var(--pcu) * 3) 0, 100% 0,
+    100% calc(100% - var(--pcu) * 2), calc(100% - var(--pcu)) calc(100% - var(--pcu) * 2),
+    calc(100% - var(--pcu)) calc(100% - var(--pcu)), calc(100% - var(--pcu) * 2) calc(100% - var(--pcu)),
+    calc(100% - var(--pcu) * 2) 100%, 0 100%,
+    0 calc(var(--pcu) * 3), var(--pcu) calc(var(--pcu) * 3),
+    var(--pcu) calc(var(--pcu) * 2), calc(var(--pcu) * 2) calc(var(--pcu) * 2),
+    calc(var(--pcu) * 2) var(--pcu), calc(var(--pcu) * 3) var(--pcu)
+  );
   width: 88px;
   height: 31px;
   display: flex;
@@ -426,11 +555,12 @@ a:visited { color: #ff8fc7; }
   border: 2px solid var(--pink);
   color: var(--pink);
   text-decoration: none;
+  /* decorative only, not a link — no pointer/hover affordance */
+  cursor: default;
 }
 
-.badge-row a:nth-child(odd) { transform: rotate(-2deg); }
-.badge-row a:nth-child(even) { transform: rotate(2deg); }
-.badge-row a:hover { background: var(--pink); color: #000; }
+.badge-row span:nth-child(odd) { transform: rotate(-2deg); }
+.badge-row span:nth-child(even) { transform: rotate(2deg); }
 
 .footer-note {
   color: var(--ink-dim);
@@ -448,7 +578,10 @@ a:visited { color: #ff8fc7; }
 .ipod-nano {
   width: 220px;
   margin: 2rem auto;
-  animation: ipod-sway 10s ease-in-out infinite;
+  /* two-frame switch, not a smooth sway — steps(2, jump-none) splits the
+     10s cycle into two flat 5s poses with one instant jump between them,
+     like a stop-motion/analog toy instead of an eased css tween. */
+  animation: ipod-sway 10s steps(2, jump-none) infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -456,25 +589,42 @@ a:visited { color: #ff8fc7; }
 }
 
 @keyframes ipod-sway {
-  0%, 8%   { transform: rotate(-3deg); }
-  15%, 43% { transform: rotate(3deg); }
-  50%, 58% { transform: rotate(3deg); }
-  65%, 93% { transform: rotate(-3deg); }
-  100%     { transform: rotate(-3deg); }
+  0%   { transform: rotate(-3deg); }
+  100% { transform: rotate(3deg); }
 }
 
 .ipod-body {
-  background: linear-gradient(135deg, #ff8fc7 0%, var(--pink) 45%, var(--pink-deep) 100%);
+  /* hard color bands instead of a smooth blend — same three tones the
+     gradient used, just stepped so the eye can see the edges. */
+  background: linear-gradient(135deg,
+    #ff8fc7 0%, #ff8fc7 33%,
+    var(--pink) 33%, var(--pink) 66%,
+    var(--pink-deep) 66%, var(--pink-deep) 100%);
   border: 3px solid #000;
-  border-radius: 26px;
+  --pc: 14px;
+  clip-path: polygon(
+    0 var(--pc), var(--pc) var(--pc), var(--pc) 0,
+    calc(100% - var(--pc)) 0, calc(100% - var(--pc)) var(--pc), 100% var(--pc),
+    100% calc(100% - var(--pc)), calc(100% - var(--pc)) calc(100% - var(--pc)), calc(100% - var(--pc)) 100%,
+    var(--pc) 100%, var(--pc) calc(100% - var(--pc)), 0 calc(100% - var(--pc))
+  );
   padding: 14px 14px 20px;
   box-shadow: 6px 6px 0 #000;
 }
 
 .ipod-screen {
-  background: radial-gradient(circle at 30% 20%, #262626 0%, #000 70%);
+  background: radial-gradient(circle at 30% 20%,
+    #262626 0%, #262626 40%,
+    #141414 40%, #141414 70%,
+    #000 70%, #000 100%);
   border: 2px solid #000;
-  border-radius: 6px;
+  --pc: 5px;
+  clip-path: polygon(
+    0 var(--pc), var(--pc) var(--pc), var(--pc) 0,
+    calc(100% - var(--pc)) 0, calc(100% - var(--pc)) var(--pc), 100% var(--pc),
+    100% calc(100% - var(--pc)), calc(100% - var(--pc)) calc(100% - var(--pc)), calc(100% - var(--pc)) 100%,
+    var(--pc) 100%, var(--pc) calc(100% - var(--pc)), 0 calc(100% - var(--pc))
+  );
   padding: 8px 10px 10px;
   color: #f4f2ee;
 }
@@ -498,7 +648,6 @@ a:visited { color: #ff8fc7; }
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 3px;
   margin-bottom: 6px;
 }
 
@@ -537,7 +686,6 @@ a:visited { color: #ff8fc7; }
   flex: 1;
   height: 5px;
   background: #333;
-  border-radius: 3px;
   cursor: pointer;
   overflow: hidden;
 }
@@ -553,9 +701,24 @@ a:visited { color: #ff8fc7; }
   width: 170px;
   height: 170px;
   margin: 18px auto 4px;
-  background: radial-gradient(circle at 35% 30%, #ffffff 0%, #e3e0dd 75%);
+  background: radial-gradient(circle at 35% 30%,
+    #ffffff 0%, #ffffff 45%,
+    #e3e0dd 45%, #e3e0dd 100%);
   border: 2px solid #000;
-  border-radius: 50%;
+  /* blocky "pixel circle" — a stepped octagon instead of a smooth
+     border-radius: 50%, so the wheel reads as 8-bit, not a real circle. */
+  clip-path: polygon(
+    25% 0%, 75% 0%,
+    75% 10%, 90% 10%,
+    90% 25%, 100% 25%,
+    100% 75%, 90% 75%,
+    90% 90%, 75% 90%,
+    75% 100%, 25% 100%,
+    25% 90%, 10% 90%,
+    10% 75%, 0% 75%,
+    0% 25%, 10% 25%,
+    10% 10%, 25% 10%
+  );
 }
 
 .ipod-wheel-label {
@@ -585,7 +748,18 @@ a:visited { color: #ff8fc7; }
   width: 74px;
   height: 74px;
   transform: translate(-50%, -50%);
-  border-radius: 50%;
+  clip-path: polygon(
+    25% 0%, 75% 0%,
+    75% 10%, 90% 10%,
+    90% 25%, 100% 25%,
+    100% 75%, 90% 75%,
+    90% 90%, 75% 90%,
+    75% 100%, 25% 100%,
+    25% 90%, 10% 90%,
+    10% 75%, 0% 75%,
+    0% 25%, 10% 25%,
+    10% 10%, 25% 10%
+  );
   background: var(--pink);
   border: 2px solid #000;
   cursor: pointer;
@@ -594,3 +768,77 @@ a:visited { color: #ff8fc7; }
 .ipod-center:hover { background: var(--pink-deep); }
 
 .ipod-nano.is-playing .ipod-center { background: var(--pink-deep); }
+
+/* ---------- persistent sidebar player ---------- */
+
+.ipod-sidebar {
+  position: fixed;
+  top: 50%;
+  right: 22px;
+  transform: translateY(-50%);
+  z-index: 500;
+}
+
+.ipod-sidebar .ipod-nano {
+  margin: 0;
+}
+
+/* not enough room beside the 760px column + margins — drop out of the
+   fixed sidebar and let it flow inline at the bottom of the page instead. */
+@media (max-width: 1180px) {
+  .ipod-sidebar {
+    position: static;
+    top: auto;
+    right: auto;
+    transform: none;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2rem;
+  }
+}
+
+/* ---------- cursor sparkle trail ----------
+   little pastel pixel sparkles spawned behind the cursor as it moves
+   (see cursor.js), which then fall and shrink away. js picks the color,
+   shape (plus vs single-pixel dot) and size per-particle and sets them
+   as inline style/vars; the fall+shrink+fade itself is pure css. */
+
+.cursor-sparkle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99998;
+  image-rendering: pixelated;
+  animation: cursor-sparkle-fall 0.7s ease-in forwards;
+}
+
+/* pixel "+" — a 3x3 grid with the corners cut off, drawn with clip-path
+   so it's a crisp plus rather than a soft sparkle glyph. */
+.cursor-sparkle--plus {
+  clip-path: polygon(
+    33.33% 0%, 66.66% 0%,
+    66.66% 33.33%, 100% 33.33%,
+    100% 66.66%, 66.66% 66.66%,
+    66.66% 100%, 33.33% 100%,
+    33.33% 66.66%, 0% 66.66%,
+    0% 33.33%, 33.33% 33.33%
+  );
+}
+
+/* single-pixel dot — just a tiny plain square, no clip-path needed. */
+.cursor-sparkle--dot {
+  border-radius: 0;
+}
+
+@keyframes cursor-sparkle-fall {
+  0% {
+    transform: translate(var(--sx), var(--sy)) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(var(--sx) + var(--sdx)), calc(var(--sy) + 26px)) scale(0);
+    opacity: 0;
+  }
+}
