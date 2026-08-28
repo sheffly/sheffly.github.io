@@ -4,4 +4,6 @@ title: About
 permalink: /about/
 ---
 
-i hate myself a lot but am trying to work on not doing that? i love finding patterns, drawing parallels, and theorizing about them
+i love finding patterns, drawing parallels, and theorizing about them! working on lowering self-depracation
+
+blog contains assorted writings I can't have associated w me publicly. Also a chance for me to mess around with css. all websites should be allowed to look like this :D
