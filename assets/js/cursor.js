@@ -1,5 +1,4 @@
-/* animated heart cursor, on top of the static css cursor in punk.css.
-   skips itself on touch devices and with reduced-motion set. */
+/* cursor duh? */
 (function () {
   "use strict";
 
@@ -11,8 +10,6 @@
   document.body.appendChild(cursor);
   document.documentElement.classList.add("cute-cursor-active");
 
-  // hotspot coords from the original .cur files, scaled 1.5x for the
-  // 48px display size (originals 32px, hotspots 0,0 and 6,0)
   var HOTSPOT = { x: 0, y: 0 };
   var LINK_HOTSPOT = { x: 9, y: 0 };
 
@@ -23,20 +20,18 @@
     cursor.style.transform = "translate(" + (x - h.x) + "px, " + (y - h.y) + "px)";
   }
 
-  // pixel sparkle trail: spawns a pixel at the pointer every ~45ms.
-  // fall/shrink/fade is css (.cursor-sparkle in punk.css), this just
-  // picks color/shape/size per particle and cleans it up after.
+  // pixel sparkle trail spawn code
   var SPARKLE_COLORS = ["#ffb3da", "#ffffff", "#ffd9ec"]; // pastel pink / white / light pink
   var SPARKLE_INTERVAL = 45;
-  var DOT_CHANCE = 0.3; // ~30% of particles are tiny dots instead of pluses
+  var DOT_CHANCE = 0.3; // a liquid 3/10 of particles are dots
   var lastSparkle = 0;
 
   function spawnSparkle(x, y) {
     var el = document.createElement("div");
     var isDot = Math.random() < DOT_CHANCE;
     var size = isDot
-      ? 2 + Math.round(Math.random() * 2)   // 2-4px single pixel
-      : 6 + Math.round(Math.random() * 5);  // 6-11px plus, varied size
+      ? 2 + Math.round(Math.random() * 2)   
+      : 6 + Math.round(Math.random() * 5);  
 
     el.className = "cursor-sparkle " + (isDot ? "cursor-sparkle--dot" : "cursor-sparkle--plus");
     el.style.width = size + "px";
@@ -50,7 +45,7 @@
       if (el.parentNode) el.parentNode.removeChild(el);
     };
     el.addEventListener("animationend", cleanup);
-    setTimeout(cleanup, 1200); // safety net if animationend never fires
+    setTimeout(cleanup, 1200); // safety net
   }
 
   document.addEventListener("mousemove", function (e) {
