@@ -1,18 +1,4 @@
-/* header ticker, clone-to-fill approach (codepen.io/alexberkowitz/pen/wveLEBL).
-
-   .ticker-track holds one .ticker-text span plus an empty
-   .ticker-copies box. on load and resize, clone .ticker-text into
-   .ticker-copies enough times to cover the viewport plus one extra.
-   clones are appended via the DOM, so there's no whitespace between
-   them and the copies sit flush with zero gap.
-
-   .ticker-track animates with translateX(-100%). its total width is
-   always a multiple of one copy's width, so moving it by its own
-   width loops with no seam.
-
-   --ticker-duration and --ticker-steps are recomputed from the total
-   track width each time, so scroll speed and step size stay constant
-   regardless of viewport width or copy count. */
+/* header ticker, bastardized version based off of this approach (codepen.io/alexberkowitz/pen/wveLEBL). */
 (function () {
   "use strict";
 
@@ -24,11 +10,11 @@
   if (!template || !copiesBox) return;
 
   if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    return; // static single copy, no animation, no extra clones needed
+    return;
   }
 
-  var PX_PER_SEC = 45;  // constant scroll speed
-  var PX_PER_STEP = 5;  // constant jump size -> constant "choppiness"
+  var PX_PER_SEC = 45; 
+  var PX_PER_STEP = 5;  
 
   function build() {
     copiesBox.innerHTML = "";
@@ -41,7 +27,7 @@
       copiesBox.appendChild(template.cloneNode(true));
     }
 
-    var totalWidth = itemWidth * (need + 1); // template + its clones
+    var totalWidth = itemWidth * (need + 1); 
     var duration = totalWidth / PX_PER_SEC;
     var steps = Math.max(1, Math.round(totalWidth / PX_PER_STEP));
 
