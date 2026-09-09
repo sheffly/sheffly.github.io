@@ -1,24 +1,18 @@
-/* seamless header ticker — same idea as the "clone enough copies to
-   outrun the viewport" marquee trick (see e.g.
-   https://codepen.io/alexberkowitz/pen/wveLEBL), redone in plain JS.
+/* header ticker, clone-to-fill approach (codepen.io/alexberkowitz/pen/wveLEBL).
 
-   .ticker-track holds one real .ticker-text span (the source string)
-   plus an empty .ticker-copies box. on load (and on resize) we clone
-   .ticker-text into .ticker-copies enough times to cover the widest
-   the viewport can get, plus one extra for safety. because the clones
-   are appended via the DOM — not typed into the HTML by hand — there
-   are no stray whitespace text nodes between them, so N identical-
-   width copies sit perfectly flush against each other with zero gap.
+   .ticker-track holds one .ticker-text span plus an empty
+   .ticker-copies box. on load and resize, clone .ticker-text into
+   .ticker-copies enough times to cover the viewport plus one extra.
+   clones are appended via the DOM, so there's no whitespace between
+   them and the copies sit flush with zero gap.
 
-   .ticker-track is then animated with translateX(-100%): since its
-   total width is always an exact multiple of one copy's width, moving
-   it by its own full width leaves the pattern looking identical to
-   where it started — an infinite loop with no seam and no pause.
+   .ticker-track animates with translateX(-100%). its total width is
+   always a multiple of one copy's width, so moving it by its own
+   width loops with no seam.
 
-   --ticker-duration and --ticker-steps are recomputed every time too,
-   from the *total* track width, so the scroll speed (px/sec) and the
-   "choppiness" (px per stepped jump) both stay constant regardless of
-   viewport width or how many copies that ends up needing. */
+   --ticker-duration and --ticker-steps are recomputed from the total
+   track width each time, so scroll speed and step size stay constant
+   regardless of viewport width or copy count. */
 (function () {
   "use strict";
 

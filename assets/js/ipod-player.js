@@ -34,8 +34,7 @@
     function togglePlay() {
       if (audio.paused) {
         audio.play().catch(function () {
-          /* browser blocked it (no user gesture yet, etc) — silently
-             ignore, the button just won't visually flip to playing */
+          /* browser blocked it, ignore. button just won't flip to playing */
         });
       } else {
         audio.pause();

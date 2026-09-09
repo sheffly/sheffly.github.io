@@ -1,7 +1,5 @@
-/* animated heart cursor — progressive enhancement on top of the
-   static css cursor in punk.css. skips itself on touch devices and
-   for anyone with reduced-motion set; the plain css cursor rules
-   stay in effect for them instead. */
+/* animated heart cursor, on top of the static css cursor in punk.css.
+   skips itself on touch devices and with reduced-motion set. */
 (function () {
   "use strict";
 
@@ -13,9 +11,8 @@
   document.body.appendChild(cursor);
   document.documentElement.classList.add("cute-cursor-active");
 
-  // hotspot coordinates from the original .cur files, scaled 1.5x to
-  // match the 48px display size (originals are 32px, hotspots 0,0
-  // and 6,0).
+  // hotspot coords from the original .cur files, scaled 1.5x for the
+  // 48px display size (originals 32px, hotspots 0,0 and 6,0)
   var HOTSPOT = { x: 0, y: 0 };
   var LINK_HOTSPOT = { x: 9, y: 0 };
 
@@ -26,12 +23,9 @@
     cursor.style.transform = "translate(" + (x - h.x) + "px, " + (y - h.y) + "px)";
   }
 
-  // ---- pixel sparkle trail ----
-  // spawns a little pastel pixel at the pointer every ~45ms while it's
-  // moving — mostly small "+" sparkles in a random size, occasionally a
-  // tiny single-pixel dot instead. the fall+shrink+fade is pure css (see
-  // .cursor-sparkle / @keyframes cursor-sparkle-fall in punk.css) — this
-  // just picks the look per-particle, spawns it, and cleans it up.
+  // pixel sparkle trail: spawns a pixel at the pointer every ~45ms.
+  // fall/shrink/fade is css (.cursor-sparkle in punk.css), this just
+  // picks color/shape/size per particle and cleans it up after.
   var SPARKLE_COLORS = ["#ffb3da", "#ffffff", "#ffd9ec"]; // pastel pink / white / light pink
   var SPARKLE_INTERVAL = 45;
   var DOT_CHANCE = 0.3; // ~30% of particles are tiny dots instead of pluses
