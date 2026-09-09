@@ -1,6 +1,4 @@
-/* drives every .ipod-nano widget on the page. each instance is fully
-   self-contained (its own <audio>, its own controls) so you can drop
-   more than one on a page without them fighting over state. */
+/* ipog. :) */
 (function () {
   "use strict";
 
@@ -34,7 +32,6 @@
     function togglePlay() {
       if (audio.paused) {
         audio.play().catch(function () {
-          /* browser blocked it, ignore. button just won't flip to playing */
         });
       } else {
         audio.pause();
