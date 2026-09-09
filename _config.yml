@@ -12,9 +12,6 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
 
-# url + baseurl: fill these in once you know your github pages address.
-# if your repo is "yourusername.github.io", leave baseurl blank.
-# if your repo has any other name, set baseurl to "/that-repo-name".
 url: "sheffly.github.io"
 baseurl: ""
 
