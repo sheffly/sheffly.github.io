@@ -4,12 +4,11 @@ theming
 _includes/head.html      <title>, meta, loads the stylesheet + font
 _includes/header.html    scrolling ticker bar, title, nav
 _includes/footer.html    hit counter, badge row, blinking footer note
-_layouts/default.html    the page shell (header + content + footer)
-_layouts/home.html       the post list on the home page
+_layouts/default.html     page shell (header + content + footer)
+_layouts/home.html        post list on the home page
 _layouts/post.html       individual post pages
 _layouts/page.html       about page etc.
 404.html
-assets/css/punk.css      all of the styling, one file
 ```
 
 accent hot pink (`--pink:
