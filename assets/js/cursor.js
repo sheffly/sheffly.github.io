@@ -48,8 +48,6 @@
     setTimeout(cleanup, 1200); // safety net
   }
 
-  /* pointermove rather than mousemove: mouse events get suppressed while a
-     post window is being dragged, which left the heart stranded mid-drag. */
   var MOVE_EVENT = window.PointerEvent ? "pointermove" : "mousemove";
 
   document.addEventListener(MOVE_EVENT, function (e) {
@@ -79,10 +77,6 @@
     move(e.clientX, e.clientY);
   });
 
-  /* the giscus comment box is a cross-origin iframe, so we stop getting
-     mousemove the moment the pointer crosses into it -- which would leave a
-     frozen heart sitting on screen. hide ours and let the iframe's own cursor
-     (set by giscus-theme.css) take over. */
   window.addEventListener("blur", function () {
     var el = document.activeElement;
     if (el && el.tagName === "IFRAME") {
