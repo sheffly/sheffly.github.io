@@ -1,12 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Space+Mono:wght@400;700&display=swap');
 
 /* ==========================================================================
-   feed.xml, wearing the site's colors.
-
-   this is plain CSS applied straight to the XML (type="text/css" in the
-   xml-stylesheet line at the top of feed.xml) rather than an XSLT transform:
-   chrome removes XSLT on 17 nov 2026, CSS-on-XML keeps working. feed readers
-   ignore all of this and just read the tags.
+   themed feed.xml
    ========================================================================== */
 
 rss, channel {
@@ -22,9 +17,6 @@ channel {
   color: #f4f2ee;
 }
 
-/* channel-level bits: title acts as the page header, the rest is chrome */
-
-/* a browser can't make XML text clickable, so say what this page is for */
 channel:before {
   content: "rss feed \00b7 paste this page's url into a feed reader to subscribe";
   display: block;
@@ -71,8 +63,6 @@ channel > lastBuildDate,
 atom\:link {
   display: none;
 }
-
-/* one item = one pink-bordered card, same shape as the site's modules */
 
 item {
   display: block;
