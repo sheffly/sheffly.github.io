@@ -8,7 +8,8 @@ markdown: kramdown
 permalink: /:year/:month/:day/:title/
 
 plugins:
-  - jekyll-feed
+  # jekyll-feed removed on purpose: feed.xml is hand-rolled now so it can carry
+  # the xml-stylesheet line that makes the feed render in the site's colors.
   - jekyll-sitemap
   - jekyll-seo-tag
 

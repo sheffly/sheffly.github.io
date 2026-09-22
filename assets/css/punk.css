@@ -1014,7 +1014,10 @@ a:visited { color: #ff8fc7; }
 
 .ms-photo-caption:hover { color: #000; background: var(--pink); }
 
-/* site title, living inside the profile card */
+/* site title, living inside the profile card.
+   scoped to .ms-profile-module so it outranks the `.ms-module-body h1` prose rule --
+   otherwise the <h1> on home rendered smaller than the <div> on every other page. */
+.ms-profile-module .ms-display-name,
 .ms-display-name {
   font-family: "Doto", sans-serif;
   font-weight: 900;
@@ -1353,6 +1356,59 @@ a:visited { color: #ff8fc7; }
   color: var(--ink-dim);
   text-align: center;
   margin-top: 1rem;
+}
+
+/* ---------- tags index: one dashed row per tag, titles comma-separated ---------- */
+
+.ms-taglist {
+  border-top: 2px dashed var(--pink);
+}
+
+.ms-tagrow {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 2px dashed var(--pink);
+  scroll-margin-top: 1rem;
+}
+
+.ms-tagrow-name {
+  flex: 0 0 auto;
+  min-width: 7.5rem;
+  font-family: "Space Mono", monospace;
+  font-size: 0.8rem;
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+  color: var(--pink);
+}
+
+.ms-tagrow-posts {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink-dim);
+}
+
+.ms-tagrow-posts a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--pink-deep);
+}
+
+.ms-tagrow-posts a:hover {
+  color: #000;
+  background: var(--pink);
+  border-bottom-color: var(--pink);
+}
+
+/* highlight whichever tag you jumped to from a post */
+.ms-tagrow:target .ms-tagrow-name { color: #000; background: var(--pink); }
+
+@media (max-width: 560px) {
+  .ms-tagrow { flex-direction: column; gap: 0.25rem; }
+  .ms-tagrow-name { min-width: 0; }
 }
 
 /* ---------- giscus container (the widget itself is themed by giscus-theme.css) ---------- */

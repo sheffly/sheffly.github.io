@@ -114,17 +114,39 @@ main .gsc-loading-image {
   background-image: none;
 }
 
-/* ---------- type ---------- */
+/* ---------- type ----------
+   blanket rule first so replies / nested reply boxes / anything giscus adds
+   later inherits the site font, then monospace back onto the chrome bits. */
+
+main,
+main *,
+.gsc-comment,
+.gsc-replies,
+.gsc-reply,
+.gsc-reply-box,
+.gsc-comment-content,
+.markdown-body,
+.markdown-body * {
+  font-family: Verdana, Geneva, "Segoe UI", sans-serif;
+}
 
 .gsc-comment-header,
 .gsc-comment-author,
+.gsc-comment-author-name,
 .gsc-comment-author-avatar,
+.gsc-comment-edited,
 .gsc-reactions-count,
 .gsc-tab-button,
 .gsc-comments > .gsc-header,
 .gsc-comment-box-tabs,
+.gsc-comment-box-tabs *,
 .gsc-comment-box-buttons,
-.gsc-social-reaction-summary-item {
+.gsc-comment-box-buttons *,
+.gsc-social-reaction-summary-item,
+.gsc-reply-box button,
+.gsc-direct-reply-button,
+.gsc-pagination-button,
+.btn {
   font-family: "Space Mono", monospace !important;
   letter-spacing: 0.02em;
 }
@@ -134,10 +156,22 @@ main .gsc-loading-image {
   text-transform: lowercase;
 }
 
+/* what you type, and the box you type a reply into */
 .gsc-comment-box-textarea,
-.gsc-comment-box-preview {
+.gsc-comment-box-preview,
+.gsc-reply-box textarea,
+textarea {
   font-family: "Space Mono", monospace !important;
   font-size: 0.85rem;
+}
+
+/* code stays monospace regardless of the blanket rule above */
+.markdown-body code,
+.markdown-body pre,
+.markdown-body pre *,
+main code,
+main pre {
+  font-family: "Space Mono", monospace !important;
 }
 
 .gsc-comment-author-avatar img,
@@ -176,11 +210,15 @@ main .gsc-loading-image {
    driven by JS on the parent page, which can't reach into a cross-origin
    iframe, so inside the comment box you get the still version. */
 
+/* the 48px versions: on the page itself the 32px art is drawn at 48px, so the
+   plain 32px file looked shrunken in here next to it. hotspots scale with it
+   (the link cursor's 6,0 at 32px is 9,0 at 48px). */
+
 html,
 body,
 main,
 main * {
-  cursor: url("{{ '/assets/images/cursor-heart.png' | absolute_url }}") 0 0, auto;
+  cursor: url("{{ '/assets/images/cursor-heart-48.png' | absolute_url }}") 0 0, auto;
 }
 
 main a,
@@ -191,10 +229,10 @@ main .btn,
 main input[type="submit"],
 main .gsc-social-reaction-summary-item,
 main .gsc-tab-button {
-  cursor: url("{{ '/assets/images/cursor-heart-link.png' | absolute_url }}") 6 0, pointer;
+  cursor: url("{{ '/assets/images/cursor-heart-link-48.png' | absolute_url }}") 9 0, pointer;
 }
 
 main textarea,
 main input[type="text"] {
-  cursor: url("{{ '/assets/images/cursor-heart.png' | absolute_url }}") 0 0, text;
+  cursor: url("{{ '/assets/images/cursor-heart-48.png' | absolute_url }}") 0 0, text;
 }

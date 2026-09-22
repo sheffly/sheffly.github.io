@@ -48,7 +48,12 @@
     setTimeout(cleanup, 1200); // safety net
   }
 
-  document.addEventListener("mousemove", function (e) {
+  /* pointermove rather than mousemove: mouse events get suppressed while a
+     post window is being dragged, which left the heart stranded mid-drag. */
+  var MOVE_EVENT = window.PointerEvent ? "pointermove" : "mousemove";
+
+  document.addEventListener(MOVE_EVENT, function (e) {
+    if (e.pointerType && e.pointerType !== "mouse" && e.pointerType !== "pen") return;
     cursor.style.display = "block";
     var target = e.target;
     var link = target && target.closest

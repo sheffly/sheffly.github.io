@@ -76,7 +76,9 @@
       window.addEventListener("pointerup", onUp);
       window.addEventListener("pointercancel", onUp);
       bar.classList.add("is-dragging");
-      e.preventDefault();
+      // deliberately NOT preventDefault() here: that suppresses the compatibility
+      // mouse events, which is what froze the custom cursor mid-drag. text
+      // selection is already blocked by `user-select: none` on .ms-window-bar.
     });
   }
 

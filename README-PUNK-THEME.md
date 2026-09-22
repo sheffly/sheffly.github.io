@@ -39,3 +39,12 @@ headers in Doto, labels/meta in Space Mono, body in Verdana
   looks in `assets/css/punk.css` under "posts as draggable windows".
 - **guestbook** is giscus, configured in `_layouts/home.html`. its colors/fonts/cursor
   come from `assets/css/giscus-theme.css`, which giscus loads inside its iframe.
+  to edit or delete a comment you go to the GitHub discussion itself — giscus's
+  widget doesn't do it in place.
+- **tags page** is `tags.html` — one dashed row per tag, post titles comma-separated.
+  styles are `.ms-tagrow*` in punk.css.
+- **the rss feed** is hand-rolled in `feed.xml` (not jekyll-feed) so it can carry an
+  `<?xml-stylesheet type="text/css">` line pointing at `assets/css/feed.css`, which is
+  what makes it render in the site's colors instead of raw XML. element order inside
+  `<item>` is what controls the order it displays in, since CSS lays them out in
+  document order.

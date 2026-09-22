@@ -8,5 +8,5 @@
   <link rel="icon" href="{{ '/assets/images/favicon.svg' | relative_url }}" type="image/svg+xml">
   <link rel="alternate icon" href="{{ '/assets/images/favicon.png' | relative_url }}" type="image/png">
   <link rel="apple-touch-icon" href="{{ '/assets/images/favicon-512.png' | relative_url }}">
-  {% feed_meta %}
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title | xml_escape }}" href="{{ '/feed.xml' | absolute_url }}">
 </head>

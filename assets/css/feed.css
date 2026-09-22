@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Space+Mono:wght@400;700&display=swap');
+
+/* ==========================================================================
+   feed.xml, wearing the site's colors.
+
+   this is plain CSS applied straight to the XML (type="text/css" in the
+   xml-stylesheet line at the top of feed.xml) rather than an XSLT transform:
+   chrome removes XSLT on 17 nov 2026, CSS-on-XML keeps working. feed readers
+   ignore all of this and just read the tags.
+   ========================================================================== */
+
+rss, channel {
+  display: block;
+  background: #040404;
+}
+
+channel {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+  font-family: Verdana, Geneva, "Segoe UI", sans-serif;
+  color: #f4f2ee;
+}
+
+/* channel-level bits: title acts as the page header, the rest is chrome */
+
+/* a browser can't make XML text clickable, so say what this page is for */
+channel:before {
+  content: "rss feed \00b7 paste this page's url into a feed reader to subscribe";
+  display: block;
+  font-family: "Space Mono", monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #000;
+  background: #ff2d95;
+  padding: 0.45rem 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+channel > title {
+  display: block;
+  font-family: "Doto", sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.3rem, 4vw, 2rem);
+  line-height: 1.15;
+  color: #ff2d95;
+  text-shadow: 2px 2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000, -2px -2px 0 #000, 4px 4px 0 #c4106a;
+  margin-bottom: 0.6rem;
+}
+
+channel > description {
+  display: block;
+  font-family: "Space Mono", monospace;
+  font-size: 0.8rem;
+  color: #b9b5ae;
+  margin-bottom: 0.4rem;
+}
+
+channel > link {
+  display: block;
+  font-family: "Space Mono", monospace;
+  font-size: 0.75rem;
+  color: #ff8fc7;
+  margin-bottom: 1.5rem;
+  word-break: break-all;
+}
+
+channel > language,
+channel > lastBuildDate,
+atom\:link {
+  display: none;
+}
+
+/* one item = one pink-bordered card, same shape as the site's modules */
+
+item {
+  display: block;
+  background: #0d0d0f;
+  border: 3px solid #ff2d95;
+  box-shadow: 5px 5px 0 #000;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.4rem;
+}
+
+item > pubDate {
+  display: block;
+  font-family: "Space Mono", monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #ff2d95;
+  margin-bottom: 0.2rem;
+}
+
+item > title {
+  display: block;
+  font-family: "Doto", sans-serif;
+  font-weight: 800;
+  font-size: 1.35rem;
+  color: #f4f2ee;
+  line-height: 1.2;
+  margin-bottom: 0.4rem;
+}
+
+item > description {
+  display: block;
+  color: #b9b5ae;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  margin-bottom: 0.6rem;
+}
+
+item > category {
+  display: inline;
+  font-size: 0.85rem;
+  color: #ff2d95;
+}
+
+item > category:before { content: "#"; }
+item > category:after { content: " "; }
+
+item > link {
+  display: block;
+  font-family: "Space Mono", monospace;
+  font-size: 0.7rem;
+  color: #ff8fc7;
+  margin-top: 0.5rem;
+  word-break: break-all;
+}
+
+item > guid { display: none; }
