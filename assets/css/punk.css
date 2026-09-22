@@ -294,7 +294,6 @@ a:visited { color: #ff8fc7; }
 .panel h1, .ms-module-body h1, .ms-window-body h1 { font-size: 1.9rem; }
 .panel h2, .ms-module-body h2, .ms-window-body h2 { font-size: 1.4rem; margin-top: 2rem; }
 
-/* the post-list has its own heading treatment; don't let the prose rules above win */
 .ms-module-body .post-list h2 {
   font-family: "Doto", sans-serif;
   font-size: 1.6rem;
@@ -594,7 +593,7 @@ a:visited { color: #ff8fc7; }
 
 .not-found { text-align: center; }
 
-/* ---------- for legal reasons this is not an ipob music widget ---------- */
+/* ---------- for legal reasons this is not an ipob nano music widget ---------- */
 
 .ipod-nano {
   width: 220px;
@@ -788,7 +787,7 @@ a:visited { color: #ff8fc7; }
 
 .ipod-nano.is-playing .ipod-center { background: var(--pink-deep); }
 
-/* ---------- ipod in the left column (home only, in-flow, not sticky) ---------- */
+/* ---------- ipod in the left column of homepage ---------- */
 .ms-ipod-slot {
   display: flex;
   justify-content: center;
@@ -870,12 +869,10 @@ a:visited { color: #ff8fc7; }
 }
 
 /* ==========================================================================
-   MYSPACE-IFICATION — home page: topbar nav, "module" boxes, profile card,
-   sidebar, top 8, tag restyle. everything below is additive; nothing above
-   this line was renamed or removed.
+   MYSPACEIFICATION <3
    ========================================================================== */
 
-/* ---------- myspace-style secondary top bar (site-wide, replaces .site-nav pills) ---------- */
+/* ---------- myspace-style secondary top bar ---------- */
 
 .ms-topbar {
   background: #000;
@@ -901,7 +898,7 @@ a:visited { color: #ff8fc7; }
   padding: 1.5rem 1rem 3rem;
 }
 
-/* ---------- generic "module" (myspace's colored-header table box) ---------- */
+/* ---------- generic "module" ---------- */
 
 .ms-module {
   position: relative;
@@ -947,7 +944,7 @@ a:visited { color: #ff8fc7; }
   box-shadow: 8px 8px 0 #000, 8px 8px 0 4px var(--pink-deep);
 }
 
-/* ---------- profile module: photo + info, myspace top-block ---------- */
+/* ---------- profile module: photo + info ---------- */
 
 .ms-profile-grid {
   display: grid;
@@ -965,8 +962,7 @@ a:visited { color: #ff8fc7; }
     calc(100% - var(--pcu)) 100%, 0 100%,
     0 var(--pcu)
   );
-  /* one single sky-gradient image stretched across the whole box, not tiled --
-     pixel grid sized ~3/4 of the crow's own on-screen pixel size */
+
   background-image: url("../images/profile-sky-bg.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -976,10 +972,7 @@ a:visited { color: #ff8fc7; }
   text-align: center;
 }
 
-/* crow, flying-only 4-frame sprite loop: up / mid / down / mid, then back to up --
-   no snap from the bottom of the stroke straight to the top.
-   native art is 88x64 per frame -- displayed at an exact 2x scale (176x128) so
-   pixelated upscaling stays crisp and undistorted. */
+/* crow */
 .ms-crow-flying {
   width: 176px;
   height: 128px;
@@ -988,7 +981,6 @@ a:visited { color: #ff8fc7; }
   background-repeat: no-repeat;
   background-size: 704px 128px;
   image-rendering: pixelated;
-  /* 4 holds x ~0.55s each, same cadence as the footer's .blink toggle */
   animation: ms-crow-fly 2.2s steps(4) infinite;
 }
 
@@ -1014,9 +1006,7 @@ a:visited { color: #ff8fc7; }
 
 .ms-photo-caption:hover { color: #000; background: var(--pink); }
 
-/* site title, living inside the profile card.
-   scoped to .ms-profile-module so it outranks the `.ms-module-body h1` prose rule --
-   otherwise the <h1> on home rendered smaller than the <div> on every other page. */
+/* site title*/
 .ms-profile-module .ms-display-name,
 .ms-display-name {
   font-family: "Doto", sans-serif;
@@ -1070,8 +1060,6 @@ a:visited { color: #ff8fc7; }
 
 .ms-layout {
   display: grid;
-  /* minmax(0, 1fr) rather than 1fr: stops a wide child (the giscus iframe)
-     from blowing the column out and scrolling the whole page sideways */
   grid-template-columns: 240px minmax(0, 1fr);
   gap: 1.75rem;
   margin-top: 1.75rem;
@@ -1082,7 +1070,7 @@ a:visited { color: #ff8fc7; }
 
 .ms-sidebar-stack > * + * { margin-top: 1.5rem; }
 
-/* ---------- sidebar footer bits (hit counter / blink / badges / credits) ---------- */
+/* ---------- sidebar footer bits ---------- */
 
 .ms-sidebar-footerbits {
   text-align: center;
@@ -1177,8 +1165,7 @@ a:visited { color: #ff8fc7; }
   .ms-photo-caption { text-align: center; }
   .ms-profile-photo-col { text-align: center; }
 
-  /* single column on phones, and put the actual content above the
-     ipod / badges / credits instead of below them */
+  /* single column on phones */
   .ms-layout {
     display: flex;
     flex-direction: column;
@@ -1187,12 +1174,12 @@ a:visited { color: #ff8fc7; }
   .ms-sidebar-stack { order: 2; }
 }
 
-/* ---------- posts as draggable windows (home page) ---------- */
+/* ---------- posts as windows (home page) ---------- */
 
 #ms-window-layer {
   position: fixed;
   inset: 0;
-  pointer-events: none;   /* the layer itself never eats clicks */
+  pointer-events: none;
   z-index: 900;
 }
 
@@ -1306,7 +1293,7 @@ a:visited { color: #ff8fc7; }
   .ms-window-bar { cursor: default; }
 }
 
-/* ---------- tags: plain, same font as post text, #tag, #tag ---------- */
+/* ---------- tags ---------- */
 
 .tag {
   position: static;
@@ -1358,7 +1345,7 @@ a:visited { color: #ff8fc7; }
   margin-top: 1rem;
 }
 
-/* ---------- tags index: one dashed row per tag, titles comma-separated ---------- */
+/* ---------- tags index ---------- */
 
 .ms-taglist {
   border-top: 2px dashed var(--pink);
@@ -1411,7 +1398,7 @@ a:visited { color: #ff8fc7; }
   .ms-tagrow-name { min-width: 0; }
 }
 
-/* ---------- giscus container (the widget itself is themed by giscus-theme.css) ---------- */
+/* ---------- giscus container (theme giscus-theme.css) ---------- */
 
 .ms-module-body { overflow-wrap: break-word; }
 
