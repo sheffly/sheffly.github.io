@@ -1,0 +1,29 @@
+---
+layout: null
+permalink: /feed/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>feed.xml &middot; {{ site.title }}</title>
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title | xml_escape }}" href="{{ '/feed.xml' | absolute_url }}">
+  <link rel="icon" href="{{ '/assets/images/favicon.svg' | relative_url }}" type="image/svg+xml">
+  <style>
+    html, body { margin: 0; padding: 0; background: #0a0a0b; }
+    pre { margin: 0; padding: 0; color: #f4f2ee; white-space: pre-wrap; word-break: break-word; }
+    .x-punct   { color: #c4106a; }
+    .x-tag     { color: #ff2d95; }
+    .x-attr    { color: #ff8fc7; }
+    .x-val     { color: #ffe6f4; }
+    .x-text    { color: #f4f2ee; }
+    .x-decl    { color: #b9b5ae; }
+    .x-comment { color: #6b675f; }
+  </style>
+</head>
+<body>
+  <pre id="ms-feed-source" data-src="{{ '/feed.xml' | relative_url }}"></pre>
+  <script src="{{ '/assets/js/feed-view.js' | relative_url }}" defer></script>
+</body>
+</html>

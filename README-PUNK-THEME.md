@@ -43,8 +43,8 @@ headers in Doto, labels/meta in Space Mono, body in Verdana
   widget doesn't do it in place.
 - **tags page** is `tags.html` — one dashed row per tag, post titles comma-separated.
   styles are `.ms-tagrow*` in punk.css.
-- **the rss feed** is hand-rolled in `feed.xml` (not jekyll-feed) so it can carry an
-  `<?xml-stylesheet type="text/css">` line pointing at `assets/css/feed.css`, which is
-  what makes it render in the site's colors instead of raw XML. element order inside
-  `<item>` is what controls the order it displays in, since CSS lays them out in
-  document order.
+- **the rss feed** is hand-rolled in `feed.xml` (not jekyll-feed). the nav's "rss"
+  points at `feed.html` (`/feed/`), which fetches feed.xml and prints its source
+  recolored — `assets/js/feed-view.js` does the highlighting, `.ms-xml .x-*` in
+  punk.css sets the colors. the raw feed.xml is left plain for feed readers; the
+  browser's own raw-XML view can't be styled from a site.
