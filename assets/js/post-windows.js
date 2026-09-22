@@ -1,6 +1,4 @@
-/* posts as little draggable windows, in front of the home page.
-   click a post title / top-8 tile -> window opens. drag the bar, hit x to close,
-   esc closes the top one. the "open full post" link still goes to the real page. */
+/* posts as little windows, bc im soooo clever */
 (function () {
   "use strict";
 
@@ -16,7 +14,7 @@
   var open = {};        // id -> window element
   var stack = [];       // open windows, back to front
   var topZ = 1000;
-  var opened = 0;       // how many we've opened, for the cascade offset
+  var opened = 0;       // cascade offset
 
   function isSmallScreen() {
     return window.matchMedia && window.matchMedia("(max-width: 720px)").matches;
@@ -45,7 +43,7 @@
 
   function startDrag(win, bar) {
     bar.addEventListener("pointerdown", function (e) {
-      if (isSmallScreen()) return;                       // full-width on phones, no dragging
+      if (isSmallScreen()) return;                       // full-width on phones
       if (e.target && e.target.closest && e.target.closest(".ms-window-close")) return;
       if (e.button !== 0 && e.pointerType === "mouse") return;
 
@@ -58,7 +56,6 @@
       function onMove(ev) {
         var x = ev.clientX - offsetX;
         var y = ev.clientY - offsetY;
-        // keep the title bar reachable: never let it leave the viewport
         var maxX = window.innerWidth - 80;
         var maxY = window.innerHeight - 40;
         win.style.left = Math.min(Math.max(x, 80 - rect.width), maxX) + "px";
@@ -76,9 +73,6 @@
       window.addEventListener("pointerup", onUp);
       window.addEventListener("pointercancel", onUp);
       bar.classList.add("is-dragging");
-      // deliberately NOT preventDefault() here: that suppresses the compatibility
-      // mouse events, which is what froze the custom cursor mid-drag. text
-      // selection is already blocked by `user-select: none` on .ms-window-bar.
     });
   }
 
@@ -98,9 +92,6 @@
 
     var win = document.createElement("div");
     win.className = "ms-window";
-    // deliberately NOT data-window-id: that attribute marks things that OPEN a
-    // window, and a closing window still bubbles its click up to the delegated
-    // handler below, which would immediately reopen it.
     win.setAttribute("data-window-key", id);
     win.setAttribute("role", "dialog");
     win.setAttribute("aria-label", title);
