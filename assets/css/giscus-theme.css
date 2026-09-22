@@ -4,8 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Space+Mono:wght@400;700&display=swap');
 
 /* ==========================================================================
-   custom giscus theme — pink/black, to match punk.css.
-   loaded inside the giscus iframe via data-theme="<url to this file>".
+   custom giscus theme
    ========================================================================== */
 
 main {
@@ -73,7 +72,6 @@ main {
   --color-fg-muted: #b9b5ae;
   --color-fg-subtle: #8a867f;
 
-  /* matches .ms-module-body's background so the widget blends into the box */
   --color-canvas-default: #0d0d0f;
   --color-canvas-overlay: #0d0d0f;
   --color-canvas-inset: #000000;
@@ -114,10 +112,6 @@ main .gsc-loading-image {
   background-image: none;
 }
 
-/* ---------- type ----------
-   blanket rule first so replies / nested reply boxes / anything giscus adds
-   later inherits the site font, then monospace back onto the chrome bits. */
-
 main,
 main *,
 .gsc-comment,
@@ -156,7 +150,6 @@ main *,
   text-transform: lowercase;
 }
 
-/* what you type, and the box you type a reply into */
 .gsc-comment-box-textarea,
 .gsc-comment-box-preview,
 .gsc-reply-box textarea,
@@ -165,7 +158,6 @@ textarea {
   font-size: 0.85rem;
 }
 
-/* code stays monospace regardless of the blanket rule above */
 .markdown-body code,
 .markdown-body pre,
 .markdown-body pre *,
@@ -176,7 +168,7 @@ main pre {
 
 .gsc-comment-author-avatar img,
 .gsc-comment-author-avatar {
-  border-radius: 0 !important;      /* square avatars, pixel-ier */
+  border-radius: 0 !important;
 }
 
 .gsc-comment .gsc-comment-header {
@@ -204,15 +196,6 @@ main pre {
 .gsc-social-reaction-summary-item {
   border-radius: 0 !important;
 }
-
-/* ---------- the cute cursor, inside the iframe ----------
-   note: this is the static heart. the animated sprite + sparkle trail are
-   driven by JS on the parent page, which can't reach into a cross-origin
-   iframe, so inside the comment box you get the still version. */
-
-/* the 48px versions: on the page itself the 32px art is drawn at 48px, so the
-   plain 32px file looked shrunken in here next to it. hotspots scale with it
-   (the link cursor's 6,0 at 32px is 9,0 at 48px). */
 
 html,
 body,
