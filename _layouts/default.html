@@ -7,17 +7,22 @@
     <main>
       {{ content }}
     </main>
-    {% include footer.html %}
+    {% unless page.layout == "home" %}
+      {% comment %} home.html carries its own sidebar with the hit counter / badges /
+         credits / copyright, so the standard footer is skipped there to avoid
+         showing all of that twice. {% endcomment %}
+      {% include footer.html %}
+    {% endunless %}
   </div>
 
 
   <div class="ipod-sidebar">
     {% include ipod-player.html
        id="chanels-sidebar"
-       audio="/assets/audio/brand-new-chanels.mp3"
-       image="/assets/images/album-brand-new-chanels.png"
-       title="brand new chanel$"
-       artist="Slayyyter" %}
+       audio=site.now_playing.audio
+       image=site.now_playing.image
+       title=site.now_playing.title
+       artist=site.now_playing.artist %}
   </div>
 
   <script src="{{ '/assets/js/cursor.js' | relative_url }}" defer></script>

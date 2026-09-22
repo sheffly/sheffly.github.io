@@ -2,14 +2,11 @@
   <div class="ticker-track"><span class="ticker-text">★ SHE/HER ★ ACAB ★ I &lt;3 MY TRANS SISTERS ★ AND MY GENDER-DIVERSE COUSINS &lt;3 ★ KEEP CATS INSIDE OR LEASHED FOR THEIR & BIRDS' SAFETY ★ PUT STICKERS ON YOUR WINDOWS FOR MIGRATING BIRDS ★ SHARE YOUR PRONOUNS (IF COMFORTABLE) EVEN IF YOU THINK THEY'RE ""DEFAULT"" OR """NORMAL"""" (p.s. no such thing as 'normal' pronouns the concept of gender is literally weird anyways)   </span><div class="ticker-copies"></div></div>
 </div>
 
+<nav class="ms-topbar" aria-label="site nav">
+  <a href="{{ '/' | relative_url }}">home</a><span class="sep">|</span><a href="{{ '/about/' | relative_url }}">about</a><span class="sep">|</span><a href="{{ '/tags/' | relative_url }}">tags</a><span class="sep">|</span><a href="{{ '/feed.xml' | relative_url }}">rss</a><span class="sep">|</span><a href="{{ '/#guestbook' | relative_url }}">guestbook</a>
+</nav>
+
 <header class="site-header">
   <h1 class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
   {% if site.description %}<p class="site-tagline">{{ site.description }}</p>{% endif %}
-
-  <nav class="site-nav">
-    <a href="{{ '/' | relative_url }}">home</a>
-    <a href="{{ '/about/' | relative_url }}">about</a>
-    <a href="{{ '/tags/' | relative_url }}">tags</a>
-    <!-- <a href="{{ '/feed.xml' | relative_url }}">rss</a> -->
-  </nav>
 </header>

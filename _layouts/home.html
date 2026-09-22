@@ -1,23 +1,138 @@
 ---
 layout: default
 ---
-<div class="panel">
+<div class="ms-page">
+
+  <!-- ===================== profile module ===================== -->
+  <div class="ms-module" style="margin-top: 0.5rem;">
+    <div class="ms-module-title">sheffly's profile</div>
+    <div class="ms-module-body">
+      <div class="ms-profile-grid">
+        <div>
+          <div class="ms-photo-frame">
+            <div class="ms-crow-flying" aria-hidden="true"></div>
+          </div>
+          <a class="ms-photo-caption" href="{{ '/tags/' | relative_url }}">view more posts &rarr;</a>
+        </div>
+        <div>
+          <p class="ms-status-quote">status: "{{ site.description }}"</p>
+          <div class="ms-info-rows">
+            {% if site.posts.size > 0 %}
+            <div class="ms-info-row"><span class="ms-info-label">mood</span><span class="ms-info-value">{{ site.posts.first.title }}</span></div>
+            {% endif %}
+            <div class="ms-info-row"><span class="ms-info-label">now playing</span><span class="ms-info-value">{{ site.now_playing.title }} &mdash; {{ site.now_playing.artist }}</span></div>
+            <div class="ms-info-row"><span class="ms-info-label">here for</span><span class="ms-info-value">assorted writings I can't have associated w me publicly</span></div>
+            {% if site.posts.size > 0 %}
+            <div class="ms-info-row"><span class="ms-info-label">last update</span><span class="ms-info-value">{{ site.posts.first.date | date: "%b %-d, %Y" }}</span></div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   {{ content }}
+
+  <!-- ===================== sidebar + main ===================== -->
+  <div class="ms-layout">
+    <div class="ms-sidebar-stack">
+      <div class="ms-sidebar-footerbits">
+        <div class="hit-counter" aria-hidden="true"><b>0</b> days since last apology for something dumb</div>
+        <p class="blink">&#9733; thanks for stopping by &lt;3 &#9733;</p>
+        <div class="badge-row">
+          <span>THIS USER<br>WEARS GLASSES</span>
+          <span>RAAGH CARE ABOUT TEACHING<br>OR DIE</span>
+          <span>PROUD MEMBER<br>OF WOKE 2.0</span>
+        </div>
+        <p class="footer-note">cursor: <a href="https://www.rw-designer.com/cursor-set/pinkiest-heart-md">pinkiest heart</a> by NaLexnu, CC BY-NC.</p>
+        <p class="footer-note">crow: <a href="https://elska.itch.io/pixel-crow">pixel crow</a> by elska.</p>
+        <p class="footer-note">&copy; {{ site.time | date: '%Y' }} sheffly.</p>
+      </div>
+    </div>
+
+    <div>
+      <!-- ===================== top 8 (most recent, auto-filled) ===================== -->
+      <div class="ms-module" style="margin-top: 0;">
+        <div class="ms-module-title">sheffly's top 8 (most recent)</div>
+        <div class="ms-module-body">
+          <div class="ms-top8-grid">
+            {% for post in site.posts limit: 8 %}
+            <a class="ms-top8-tile" href="{{ post.url | relative_url }}">
+              <span class="ms-top8-glyph">&#10022;</span>
+              <span class="ms-top8-title">{{ post.title }}</span>
+              <span class="ms-top8-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+            </a>
+            {% endfor %}
+            {% assign remaining = 8 | minus: site.posts.size %}
+            {% if remaining > 0 %}
+              {% for i in (1..remaining) %}
+              <div class="ms-top8-tile ms-top8-tile--empty">
+                <span class="ms-top8-glyph">&middot;&middot;&middot;</span>
+                <span class="ms-top8-title">reserved for future rambling</span>
+              </div>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================== latest entries ===================== -->
+      <div class="ms-module">
+        <div class="ms-module-title">sheffly's latest entries</div>
+        <div class="ms-module-body" style="padding: 1.5rem 1.5rem 0.5rem;">
+          <ul class="post-list">
+            {% for post in site.posts %}
+            <li>
+              <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+              <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+              <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 32 }}</p>
+              {% if post.tags.size > 0 %}
+              <p>{% for tag in post.tags %}<a class="tag" href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}">{{ tag }}</a>{% endfor %}</p>
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+
+          {% if site.posts.size == 0 %}
+          <p class="post-excerpt">no popts :(</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- ===================== guestbook (giscus) ===================== -->
+      <div class="ms-module" id="guestbook">
+        <div class="ms-module-title">leave a mark</div>
+        <div class="ms-module-body">
+          <p class="ms-note" style="margin-top:0;">comments run on <a href="https://giscus.app" target="_blank" rel="noopener">giscus</a> &mdash; you'll need a github account to sign in and leave one.</p>
+
+          {% comment %}
+            TODO(sheffly): giscus setup, 4 quick steps:
+            1. make sure this repo is public and Settings > General > Features > "Discussions" is turned on.
+            2. install the giscus app on this repo: https://github.com/apps/giscus
+            3. go to https://giscus.app, fill in this repo's name, pick a Discussion category
+               (General is fine), and it will spit out the four data-* values below.
+            4. paste your real values in for repo / repo-id / category / category-id and delete this comment.
+          {% endcomment %}
+          <script src="https://giscus.app/client.js"
+            data-repo="REPLACE-ME/REPLACE-ME"
+            data-repo-id="REPLACE-ME"
+            data-category="General"
+            data-category-id="REPLACE-ME"
+            data-mapping="specific"
+            data-term="home-guestbook"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="noborder_dark"
+            data-lang="en"
+            crossorigin="anonymous"
+            async>
+          </script>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </div>
-
-<ul class="post-list">
-  {% for post in site.posts %}
-  <li>
-    <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
-    <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-    <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 32 }}</p>
-    {% if post.tags.size > 0 %}
-    <p>{% for tag in post.tags %}<a class="tag" href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}">{{ tag }}</a>{% endfor %}</p>
-    {% endif %}
-  </li>
-  {% endfor %}
-</ul>
-
-{% if site.posts.size == 0 %}
-<p class="post-excerpt">no popts :(</p>
-{% endif %}

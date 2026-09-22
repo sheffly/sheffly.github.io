@@ -15,6 +15,13 @@ plugins:
 url: "sheffly.github.io"
 baseurl: ""
 
+# single source of truth for the ipod widget + the profile module's "now playing" row
+now_playing:
+  title: "brand new chanel$"
+  artist: "Slayyyter"
+  audio: "/assets/audio/brand-new-chanels.mp3"
+  image: "/assets/images/album-brand-new-chanels.png"
+
 exclude:
   - Gemfile
   - Gemfile.lock
