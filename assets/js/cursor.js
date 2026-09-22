@@ -73,4 +73,20 @@
     cursor.style.display = "block";
     move(e.clientX, e.clientY);
   });
+
+  /* the giscus comment box is a cross-origin iframe, so we stop getting
+     mousemove the moment the pointer crosses into it -- which would leave a
+     frozen heart sitting on screen. hide ours and let the iframe's own cursor
+     (set by giscus-theme.css) take over. */
+  window.addEventListener("blur", function () {
+    var el = document.activeElement;
+    if (el && el.tagName === "IFRAME") {
+      cursor.style.display = "none";
+      document.documentElement.classList.remove("cute-cursor-active");
+    }
+  });
+
+  window.addEventListener("focus", function () {
+    document.documentElement.classList.add("cute-cursor-active");
+  });
 })();

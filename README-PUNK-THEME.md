@@ -1,33 +1,41 @@
 theming
 
 ```
-_includes/head.html      <title>, meta, loads the stylesheet + font
-_includes/header.html    scrolling ticker bar, title, nav
-_includes/footer.html    hit counter, badge row, blinking footer note
-_layouts/default.html     page shell (header + content + footer)
-_layouts/home.html        post list on the home page
-_layouts/post.html       individual post pages
-_layouts/page.html       about page etc.
+_includes/head.html             <title>, meta, loads the stylesheet + font
+_includes/header.html           scrolling ticker bar + the pipe nav (home | about | tags | rss | guestbook)
+_includes/profile-module.html   the profile card: flying crow, site title, status + info rows. every page.
+_includes/sidebar.html          left column: ipod (home only), hit counter, badges, credits, copyright
+_includes/post-windows.html     hidden post bodies + the layer the draggable windows get drawn into (home only)
+_includes/ipod-player.html      the nano itself
+_includes/footer.html           UNUSED now — everything in it moved to sidebar.html
+_includes/crow-perch.html       UNUSED now — the old perched corner crow, kept in case you want it back
+_layouts/default.html           page shell: header, profile card, sidebar + main column
+_layouts/home.html              top 8, latest entries, guestbook
+_layouts/post.html              individual post pages
+_layouts/page.html              about, tags
 404.html
 ```
 
-accent hot pink (`--pink:
-#ff2d95` in punk.css) 
+accent hot pink (`--pink: #ff2d95` in punk.css)
 off-white body text w near-black panels for contrast.
-headers in Permanent Marker
-
+headers in Doto, labels/meta in Space Mono, body in Verdana
 
 ```css
 --pink: #ff2d95;
 ```
 
-
-- **ticker bar** (scrolling text at the very top)  text in
-  `_includes/header.html`, // delete the `.ticker` block there to
-  remove it entirely.
-footer `_includes/footer.html`,
- `<p class="blink">` line in
-  `_includes/footer.html`.
- bottom of `_includes/footer.html` in `.badge-row` div.
- `punk.css`, the
-  `nth-child` r
+- **ticker bar** (scrolling text at the very top) text lives in
+  `_includes/header.html` — delete the `.ticker` block there to remove it entirely.
+- **hit counter / blink line / badges / credits** are all in
+  `_includes/sidebar.html` now, not the footer.
+- **badges** are the `.badge-row` div in `_includes/sidebar.html`.
+- **the crow** is a 4-frame flying sprite (`assets/images/crow-flying.png`,
+  laid out up / mid / down / mid). speed + size are the `.ms-crow-flying`
+  rule in punk.css. the sky behind it is `assets/images/profile-sky-bg.png`.
+- **now playing** track is set once in `_config.yml` under `now_playing:` and
+  feeds both the ipod and the profile card's row.
+- **post windows**: any link with `data-window-id="post-<slug>"` opens that post
+  as a draggable window instead of navigating. logic in `assets/js/post-windows.js`,
+  looks in `assets/css/punk.css` under "posts as draggable windows".
+- **guestbook** is giscus, configured in `_layouts/home.html`. its colors/fonts/cursor
+  come from `assets/css/giscus-theme.css`, which giscus loads inside its iframe.

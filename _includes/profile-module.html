@@ -1,0 +1,31 @@
+<div class="ms-module ms-profile-module">
+  <div class="ms-module-title">sheffly's profile</div>
+  <div class="ms-module-body">
+    <div class="ms-profile-grid">
+      <div class="ms-profile-photo-col">
+        <div class="ms-photo-frame">
+          <div class="ms-crow-flying" aria-hidden="true"></div>
+        </div>
+        <a class="ms-photo-caption" href="{{ '/tags/' | relative_url }}">view more posts &rarr;</a>
+      </div>
+      <div class="ms-profile-info-col">
+        {% if page.layout == "home" %}
+        <h1 class="ms-display-name"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+        {% else %}
+        <div class="ms-display-name"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></div>
+        {% endif %}
+
+        <p class="ms-status-quote">status: {% if site.posts.size > 0 %}{{ site.posts.first.title }}{% else %}{{ site.description }}{% endif %}</p>
+
+        <div class="ms-info-rows">
+          <div class="ms-info-row"><span class="ms-info-label">mood</span><span class="ms-info-value">{{ site.description }}</span></div>
+          <div class="ms-info-row"><span class="ms-info-label">now playing</span><span class="ms-info-value">{{ site.now_playing.title }} &mdash; {{ site.now_playing.artist }}</span></div>
+          <div class="ms-info-row"><span class="ms-info-label">here for</span><span class="ms-info-value">assorted writings I can't have associated w me publicly</span></div>
+          {% if site.posts.size > 0 %}
+          <div class="ms-info-row"><span class="ms-info-label">last update</span><span class="ms-info-value">{{ site.posts.first.date | date: "%b %-d, %Y" }}</span></div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

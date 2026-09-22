@@ -12,7 +12,8 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
 
-url: "sheffly.github.io"
+# needs the scheme: absolute_url (used by the giscus theme + rss feed) builds on this
+url: "https://sheffly.github.io"
 baseurl: ""
 
 # single source of truth for the ipod widget + the profile module's "now playing" row

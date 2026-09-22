@@ -79,6 +79,8 @@ html.cute-cursor-active * {
 .badge-row span::before, .badge-row span::after,
 .hit-counter::before, .hit-counter::after,
 .panel pre::before, .panel pre::after,
+.ms-module-body pre::before, .ms-module-body pre::after,
+.ms-window-body pre::before, .ms-window-body pre::after,
 .panel img::before, .panel img::after {
   content: "";
   position: absolute;
@@ -96,11 +98,13 @@ html.cute-cursor-active * {
 
 .panel::before, .post-list li::before, .tag::before, .site-nav a::before,
 .footer-links a::before, .badge-row span::before, .hit-counter::before,
-.panel pre::before, .panel img::before { top: 0; left: 0; }
+.panel pre::before, .panel img::before,
+.ms-module-body pre::before, .ms-window-body pre::before { top: 0; left: 0; }
 
 .panel::after, .post-list li::after, .tag::after, .site-nav a::after,
 .footer-links a::after, .badge-row span::after, .hit-counter::after,
-.panel pre::after, .panel img::after { bottom: 0; right: 0; transform: rotate(180deg); }
+.panel pre::after, .panel img::after,
+.ms-module-body pre::after, .ms-window-body pre::after { bottom: 0; right: 0; transform: rotate(180deg); }
 
 html, body {
   margin: 0;
@@ -277,7 +281,9 @@ a:visited { color: #ff8fc7; }
   padding-top: 88px;
 }
 
-.panel h1, .panel h2, .panel h3 {
+.panel h1, .panel h2, .panel h3,
+.ms-module-body h1, .ms-module-body h2, .ms-module-body h3,
+.ms-window-body h1, .ms-window-body h2, .ms-window-body h3 {
   font-family: "Doto", sans-serif;
   font-weight: 800;
   font-variation-settings: "wght" 800;
@@ -285,10 +291,20 @@ a:visited { color: #ff8fc7; }
   line-height: 1.25;
 }
 
-.panel h1 { font-size: 1.9rem; }
-.panel h2 { font-size: 1.4rem; margin-top: 2rem; }
+.panel h1, .ms-module-body h1, .ms-window-body h1 { font-size: 1.9rem; }
+.panel h2, .ms-module-body h2, .ms-window-body h2 { font-size: 1.4rem; margin-top: 2rem; }
 
-.panel blockquote {
+/* the post-list has its own heading treatment; don't let the prose rules above win */
+.ms-module-body .post-list h2 {
+  font-family: "Doto", sans-serif;
+  font-size: 1.6rem;
+  color: var(--ink);
+  margin: 0 0 0.4rem;
+}
+
+.panel blockquote,
+.ms-module-body blockquote,
+.ms-window-body blockquote {
   border-left: 4px solid var(--pink);
   margin: 1.25rem 0;
   padding: 0.1rem 1rem;
@@ -296,18 +312,24 @@ a:visited { color: #ff8fc7; }
   font-style: italic;
 }
 
-.panel code, .panel pre {
+.panel code, .panel pre,
+.ms-module-body code, .ms-module-body pre,
+.ms-window-body code, .ms-window-body pre {
   font-family: "Space Mono", monospace;
   font-size: 0.9em;
 }
 
-.panel code {
+.panel code,
+.ms-module-body code,
+.ms-window-body code {
   background: #1a1a1d;
   color: var(--pink);
   padding: 0.1em 0.4em;
 }
 
-.panel pre {
+.panel pre,
+.ms-module-body pre,
+.ms-window-body pre {
   position: relative;
   --pcu: 3px;
   --corner-color: var(--pink-deep);
@@ -323,9 +345,13 @@ a:visited { color: #ff8fc7; }
   overflow-x: auto;
 }
 
-.panel pre code { background: none; padding: 0; color: var(--ink); }
+.panel pre code,
+.ms-module-body pre code,
+.ms-window-body pre code { background: none; padding: 0; color: var(--ink); }
 
-.panel img {
+.panel img,
+.ms-module-body img,
+.ms-window-body img {
   position: relative;
   --pcu: 3px;
   clip-path: polygon(
@@ -437,13 +463,15 @@ a:visited { color: #ff8fc7; }
 
 /* ---------- tags index page ---------- */
 
-.panel h2[id] {
+.panel h2[id],
+.ms-module-body h2[id] {
   margin-top: 2rem;
   padding-top: 0.5rem;
   border-top: 2px dashed var(--pink-deep);
 }
 
-.panel h2[id]:first-of-type {
+.panel h2[id]:first-of-type,
+.ms-module-body h2[id]:first-of-type {
   margin-top: 0.5rem;
   border-top: none;
   padding-top: 0;
@@ -760,40 +788,14 @@ a:visited { color: #ff8fc7; }
 
 .ipod-nano.is-playing .ipod-center { background: var(--pink-deep); }
 
-/* ---------- sidebar player ---------- */
-.ipod-sidebar {
-  position: fixed;
-  top: 50%;
-  left: calc(50% + 380px);
-  width: calc(50vw - 380px);
-  transform: translateY(-50%);
+/* ---------- ipod in the left column (home only, in-flow, not sticky) ---------- */
+.ms-ipod-slot {
   display: flex;
   justify-content: center;
-  z-index: 500;
 }
 
-.ipod-sidebar .ipod-nano {
+.ms-ipod-slot .ipod-nano {
   margin: 0;
-}
-
-/* if not enough room beside the column, flow inline to bottom instead */
-@media (max-width: 1300px) {
-  .ipod-sidebar {
-    position: static;
-    top: auto;
-    left: auto;
-    width: auto;
-    transform: none;
-    margin: 0 auto;
-    padding-bottom: 2rem;
-  }
-}
-
-/* hide on mibile */
-@media (max-width: 640px) {
-  .ipod-sidebar {
-    display: none;
-  }
 }
 
 /* ---------- cursor sparkle trail ---------- */
@@ -1012,6 +1014,26 @@ a:visited { color: #ff8fc7; }
 
 .ms-photo-caption:hover { color: #000; background: var(--pink); }
 
+/* site title, living inside the profile card */
+.ms-display-name {
+  font-family: "Doto", sans-serif;
+  font-weight: 900;
+  font-variation-settings: "wght" 900;
+  font-size: clamp(1.35rem, 3.6vw, 2.1rem);
+  line-height: 1.15;
+  color: var(--pink);
+  text-shadow:
+    2px 2px 0 #000,
+    -2px 2px 0 #000,
+    2px -2px 0 #000,
+    -2px -2px 0 #000,
+    4px 4px 0 var(--pink-deep);
+  margin: 0 0 0.6rem;
+}
+
+.ms-display-name a { color: inherit; text-decoration: none; }
+.ms-display-name a:hover { color: inherit; background: none; }
+
 .ms-status-quote {
   font-family: "Space Mono", monospace;
   font-size: 0.8rem;
@@ -1045,11 +1067,15 @@ a:visited { color: #ff8fc7; }
 
 .ms-layout {
   display: grid;
-  grid-template-columns: 230px 1fr;
+  /* minmax(0, 1fr) rather than 1fr: stops a wide child (the giscus iframe)
+     from blowing the column out and scrolling the whole page sideways */
+  grid-template-columns: 240px minmax(0, 1fr);
   gap: 1.75rem;
   margin-top: 1.75rem;
   align-items: start;
 }
+
+.ms-main { min-width: 0; }
 
 .ms-sidebar-stack > * + * { margin-top: 1.5rem; }
 
@@ -1143,9 +1169,138 @@ a:visited { color: #ff8fc7; }
 
 @media (max-width: 720px) {
   .ms-top8-grid { grid-template-columns: repeat(2, 1fr); }
-  .ms-layout { grid-template-columns: 1fr; }
   .ms-profile-grid { grid-template-columns: 1fr; }
-  .ms-photo-frame { max-width: 200px; margin: 0 auto; }
+  .ms-photo-frame { max-width: 220px; margin: 0 auto; }
+  .ms-photo-caption { text-align: center; }
+  .ms-profile-photo-col { text-align: center; }
+
+  /* single column on phones, and put the actual content above the
+     ipod / badges / credits instead of below them */
+  .ms-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .ms-main { order: 1; }
+  .ms-sidebar-stack { order: 2; }
+}
+
+/* ---------- posts as draggable windows (home page) ---------- */
+
+#ms-window-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;   /* the layer itself never eats clicks */
+  z-index: 900;
+}
+
+.ms-window {
+  position: absolute;
+  pointer-events: auto;
+  width: min(660px, calc(100vw - 2rem));
+  max-height: min(76vh, 760px);
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  border: 4px solid var(--pink);
+  box-shadow: 8px 8px 0 #000, 8px 8px 0 4px var(--pink-deep);
+  --pcu: 5px;
+  clip-path: polygon(
+    var(--pcu) 0, 100% 0,
+    100% calc(100% - var(--pcu)), calc(100% - var(--pcu)) calc(100% - var(--pcu)),
+    calc(100% - var(--pcu)) 100%, 0 100%,
+    0 var(--pcu)
+  );
+  outline: none;
+}
+
+.ms-window.is-front {
+  box-shadow: 8px 8px 0 #000, 8px 8px 0 4px var(--pink);
+}
+
+.ms-window-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: var(--pink);
+  color: #000;
+  border-bottom: 3px solid #000;
+  padding: 0.45rem 0.5rem 0.45rem 0.85rem;
+  cursor: grab;
+  user-select: none;
+  flex: 0 0 auto;
+}
+
+.ms-window-bar.is-dragging { cursor: grabbing; }
+
+.ms-window-title {
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.76rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ms-window-close {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  color: var(--pink);
+  border: 2px solid #000;
+  font-family: "Space Mono", monospace;
+  font-size: 0.72rem;
+  padding: 0;
+}
+
+.ms-window-close:hover { background: var(--ink); color: #000; }
+
+.ms-window-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  background: #000;
+  border-bottom: 2px dashed var(--pink-deep);
+  padding: 0.5rem 0.85rem;
+  font-family: "Space Mono", monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex: 0 0 auto;
+}
+
+.ms-window-date { color: var(--ink-dim); }
+.ms-window-link { color: var(--pink); text-decoration: none; }
+.ms-window-link:hover { color: #000; background: var(--pink); }
+
+.ms-window-body {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 1.25rem 1.5rem 1.75rem;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.ms-window-body > :first-child { margin-top: 0; }
+
+@media (max-width: 720px) {
+  .ms-window {
+    left: 0.5rem !important;
+    right: 0.5rem;
+    top: 3.5rem !important;
+    width: auto;
+    max-height: 80vh;
+  }
+  .ms-window-bar { cursor: default; }
 }
 
 /* ---------- tags: plain, same font as post text, #tag, #tag ---------- */
@@ -1198,4 +1353,19 @@ a:visited { color: #ff8fc7; }
   color: var(--ink-dim);
   text-align: center;
   margin-top: 1rem;
+}
+
+/* ---------- giscus container (the widget itself is themed by giscus-theme.css) ---------- */
+
+.ms-module-body { overflow-wrap: break-word; }
+
+.giscus,
+.giscus-frame {
+  width: 100%;
+  max-width: 100%;
+}
+
+.giscus-frame {
+  border: none;
+  color-scheme: normal;
 }

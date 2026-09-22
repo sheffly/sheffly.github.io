@@ -1,0 +1,16 @@
+{% comment %}
+  Source content for the draggable post windows on the home page.
+  Each post's rendered body is parked in a <template> (so nothing loads or
+  renders until a window is actually opened) and cloned by post-windows.js.
+{% endcomment %}
+<div id="ms-window-data" hidden>
+  {% for post in site.posts %}
+  <template class="ms-window-src"
+            data-window-id="post-{{ post.url | slugify }}"
+            data-window-title="{{ post.title | escape }}"
+            data-window-date="{{ post.date | date: '%b %-d, %Y' }}"
+            data-window-url="{{ post.url | relative_url }}">{{ post.content }}</template>
+  {% endfor %}
+</div>
+
+<div id="ms-window-layer" aria-live="polite"></div>

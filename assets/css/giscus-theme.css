@@ -1,0 +1,200 @@
+---
+# front matter so jekyll runs liquid on this file (absolute_url for the cursor images)
+---
+@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Space+Mono:wght@400;700&display=swap');
+
+/* ==========================================================================
+   custom giscus theme — pink/black, to match punk.css.
+   loaded inside the giscus iframe via data-theme="<url to this file>".
+   ========================================================================== */
+
+main {
+  --color-prettylights-syntax-comment: #b9b5ae;
+  --color-prettylights-syntax-constant: #ff8fc7;
+  --color-prettylights-syntax-entity: #ff2d95;
+  --color-prettylights-syntax-storage-modifier-import: #f4f2ee;
+  --color-prettylights-syntax-entity-tag: #ff8fc7;
+  --color-prettylights-syntax-keyword: #ff2d95;
+  --color-prettylights-syntax-string: #ffb8dd;
+  --color-prettylights-syntax-variable: #ff8fc7;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #ff5c8a;
+  --color-prettylights-syntax-invalid-illegal-text: #f4f2ee;
+  --color-prettylights-syntax-invalid-illegal-bg: #8a0a4a;
+  --color-prettylights-syntax-carriage-return-text: #f4f2ee;
+  --color-prettylights-syntax-carriage-return-bg: #c4106a;
+  --color-prettylights-syntax-string-regexp: #ffb8dd;
+  --color-prettylights-syntax-markup-list: #ffe6f4;
+  --color-prettylights-syntax-markup-heading: #ff2d95;
+  --color-prettylights-syntax-markup-italic: #f4f2ee;
+  --color-prettylights-syntax-markup-bold: #f4f2ee;
+  --color-prettylights-syntax-markup-deleted-text: #ffe6f4;
+  --color-prettylights-syntax-markup-deleted-bg: #5c0630;
+  --color-prettylights-syntax-markup-inserted-text: #ffe6f4;
+  --color-prettylights-syntax-markup-inserted-bg: #3d0a24;
+  --color-prettylights-syntax-markup-changed-text: #ffe6f4;
+  --color-prettylights-syntax-markup-changed-bg: #5c0630;
+  --color-prettylights-syntax-markup-ignored-text: #b9b5ae;
+  --color-prettylights-syntax-markup-ignored-bg: #1a1a1d;
+  --color-prettylights-syntax-meta-diff-range: #ff8fc7;
+  --color-prettylights-syntax-brackethighlighter-angle: #b9b5ae;
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #4a4a4a;
+  --color-prettylights-syntax-constant-other-reference-link: #ffb8dd;
+
+  --color-btn-text: #f4f2ee;
+  --color-btn-bg: #000000;
+  --color-btn-border: #ff2d95;
+  --color-btn-shadow: 0 0 transparent;
+  --color-btn-inset-shadow: 0 0 transparent;
+  --color-btn-hover-bg: #c4106a;
+  --color-btn-hover-border: #ff2d95;
+  --color-btn-active-bg: #8a0a4a;
+  --color-btn-active-border: #ff2d95;
+  --color-btn-selected-bg: #1a1a1d;
+
+  --color-btn-primary-text: #000000;
+  --color-btn-primary-bg: #ff2d95;
+  --color-btn-primary-border: #000000;
+  --color-btn-primary-shadow: 0 0 transparent;
+  --color-btn-primary-inset-shadow: 0 0 transparent;
+  --color-btn-primary-hover-bg: #ff8fc7;
+  --color-btn-primary-hover-border: #000000;
+  --color-btn-primary-selected-bg: #c4106a;
+  --color-btn-primary-selected-shadow: 0 0 transparent;
+  --color-btn-primary-disabled-text: rgba(0, 0, 0, 0.55);
+  --color-btn-primary-disabled-bg: #c4106a;
+  --color-btn-primary-disabled-border: #000000;
+
+  --color-action-list-item-default-hover-bg: rgba(255, 45, 149, 0.16);
+  --color-segmented-control-bg: #000000;
+  --color-segmented-control-button-bg: #0d0d0f;
+  --color-segmented-control-button-selected-border: #ff2d95;
+
+  --color-fg-default: #f4f2ee;
+  --color-fg-muted: #b9b5ae;
+  --color-fg-subtle: #8a867f;
+
+  /* matches .ms-module-body's background so the widget blends into the box */
+  --color-canvas-default: #0d0d0f;
+  --color-canvas-overlay: #0d0d0f;
+  --color-canvas-inset: #000000;
+  --color-canvas-subtle: #0a0a0b;
+
+  --color-border-default: #ff2d95;
+  --color-border-muted: #c4106a;
+  --color-neutral-muted: rgba(255, 45, 149, 0.14);
+
+  --color-accent-fg: #ff8fc7;
+  --color-accent-emphasis: #ff2d95;
+  --color-accent-muted: rgba(255, 45, 149, 0.4);
+  --color-accent-subtle: rgba(255, 45, 149, 0.12);
+
+  --color-success-fg: #ff8fc7;
+  --color-attention-fg: #ffb8dd;
+  --color-attention-muted: rgba(255, 143, 199, 0.4);
+  --color-attention-subtle: rgba(255, 143, 199, 0.12);
+  --color-danger-fg: #ff5c8a;
+  --color-danger-muted: rgba(255, 92, 138, 0.4);
+  --color-danger-subtle: rgba(255, 92, 138, 0.12);
+
+  --color-primer-shadow-inset: 0 0 transparent;
+  --color-scale-gray-7: #0a0a0b;
+  --color-scale-blue-8: #c4106a;
+
+  --color-social-reaction-bg-hover: rgba(255, 45, 149, 0.2);
+  --color-social-reaction-bg-reacted-hover: rgba(255, 45, 149, 0.32);
+
+  font-family: Verdana, Geneva, "Segoe UI", sans-serif;
+}
+
+main .pagination-loader-container {
+  background-image: none;
+}
+
+main .gsc-loading-image {
+  background-image: none;
+}
+
+/* ---------- type ---------- */
+
+.gsc-comment-header,
+.gsc-comment-author,
+.gsc-comment-author-avatar,
+.gsc-reactions-count,
+.gsc-tab-button,
+.gsc-comments > .gsc-header,
+.gsc-comment-box-tabs,
+.gsc-comment-box-buttons,
+.gsc-social-reaction-summary-item {
+  font-family: "Space Mono", monospace !important;
+  letter-spacing: 0.02em;
+}
+
+.gsc-comments > .gsc-header,
+.gsc-comments > .gsc-comment-box .gsc-comment-box-tabs {
+  text-transform: lowercase;
+}
+
+.gsc-comment-box-textarea,
+.gsc-comment-box-preview {
+  font-family: "Space Mono", monospace !important;
+  font-size: 0.85rem;
+}
+
+.gsc-comment-author-avatar img,
+.gsc-comment-author-avatar {
+  border-radius: 0 !important;      /* square avatars, pixel-ier */
+}
+
+.gsc-comment .gsc-comment-header {
+  border-bottom: 2px dashed #c4106a;
+}
+
+.gsc-comment > .gsc-comment-box,
+.gsc-comment-box {
+  border-radius: 0 !important;
+}
+
+.gsc-comment-box-main,
+.gsc-comment-box-write,
+.gsc-comment-box-preview,
+.gsc-comment-box-textarea,
+.gsc-comment-box-bottom,
+.gsc-reactions,
+.gsc-comment,
+.gsc-replies,
+.gsc-reply,
+.btn,
+.BtnGroup,
+.form-control,
+.color-bg-tertiary,
+.gsc-social-reaction-summary-item {
+  border-radius: 0 !important;
+}
+
+/* ---------- the cute cursor, inside the iframe ----------
+   note: this is the static heart. the animated sprite + sparkle trail are
+   driven by JS on the parent page, which can't reach into a cross-origin
+   iframe, so inside the comment box you get the still version. */
+
+html,
+body,
+main,
+main * {
+  cursor: url("{{ '/assets/images/cursor-heart.png' | absolute_url }}") 0 0, auto;
+}
+
+main a,
+main button,
+main summary,
+main [role="button"],
+main .btn,
+main input[type="submit"],
+main .gsc-social-reaction-summary-item,
+main .gsc-tab-button {
+  cursor: url("{{ '/assets/images/cursor-heart-link.png' | absolute_url }}") 6 0, pointer;
+}
+
+main textarea,
+main input[type="text"] {
+  cursor: url("{{ '/assets/images/cursor-heart.png' | absolute_url }}") 0 0, text;
+}

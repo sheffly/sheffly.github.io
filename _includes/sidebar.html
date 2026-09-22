@@ -1,0 +1,27 @@
+<div class="ms-sidebar-stack">
+
+  {% if page.layout == "home" %}
+  {% comment %} ipod lives in the left column, home page only, no album art, not sticky {% endcomment %}
+  <div class="ms-ipod-slot">
+    {% include ipod-player.html
+       id="home-ipod"
+       audio=site.now_playing.audio
+       title=site.now_playing.title
+       artist=site.now_playing.artist %}
+  </div>
+  {% endif %}
+
+  <div class="ms-sidebar-footerbits">
+    <div class="hit-counter" aria-hidden="true"><b>0</b> days since last apology for something dumb</div>
+    <p class="blink">&#9733; thanks for stopping by &lt;3 &#9733;</p>
+    <div class="badge-row">
+      <span>THIS USER<br>WEARS GLASSES</span>
+      <span>RAAGH CARE ABOUT TEACHING<br>OR DIE</span>
+      <span>PROUD MEMBER<br>OF WOKE 2.0</span>
+    </div>
+    <p class="footer-note">cursor: <a href="https://www.rw-designer.com/cursor-set/pinkiest-heart-md">pinkiest heart</a> by NaLexnu, CC BY-NC.</p>
+    <p class="footer-note">crow: <a href="https://elska.itch.io/pixel-crow">pixel crow</a> by elska.</p>
+    <p class="footer-note">&copy; {{ site.time | date: '%Y' }} sheffly.</p>
+  </div>
+
+</div>
