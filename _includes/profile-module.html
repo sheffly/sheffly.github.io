@@ -10,9 +10,9 @@
       </div>
       <div class="ms-profile-info-col">
         {% if page.layout == "home" %}
-        <h1 class="ms-display-name"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+        <h1 class="ms-display-name"><a href="{{ '/' | relative_url }}"><span class="ms-display-name-img" role="img" aria-label="{{ site.title }}"></span><span class="ms-display-name-text">{{ site.title }}</span></a></h1>
         {% else %}
-        <div class="ms-display-name"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></div>
+        <div class="ms-display-name"><a href="{{ '/' | relative_url }}"><span class="ms-display-name-img" role="img" aria-label="{{ site.title }}"></span><span class="ms-display-name-text">{{ site.title }}</span></a></div>
         {% endif %}
 
         <p class="ms-status-quote">status: {% if site.posts.size > 0 %}{{ site.posts.first.title }}{% else %}{{ site.description }}{% endif %}</p>

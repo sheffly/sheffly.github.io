@@ -2,6 +2,7 @@
 <html lang="en">
 {% include head.html %}
 <body>
+  {% include bg-litter.html %}
   {% include header.html %}
 
   <div class="ms-page">
@@ -20,6 +21,7 @@
     {% include post-windows.html %}
   {% endif %}
 
+  <script src="{{ '/assets/js/bg-litter.js' | relative_url }}" defer></script>
   <script src="{{ '/assets/js/cursor.js' | relative_url }}" defer></script>
   <script src="{{ '/assets/js/ipod-player.js' | relative_url }}" defer></script>
   <script src="{{ '/assets/js/ticker.js' | relative_url }}" defer></script>

@@ -23,19 +23,32 @@
   // pixel sparkle trail spawn code
   var SPARKLE_COLORS = ["#ffb3da", "#ffffff", "#ffd9ec"]; // pastel pink / white / light pink
   var SPARKLE_INTERVAL = 45;
-  var DOT_CHANCE = 0.3; // a liquid 3/10 of particles are dots
+  // particle mix: dots, plusses, filled pixel hearts, outline pixel hearts
   var lastSparkle = 0;
 
   function spawnSparkle(x, y) {
     var el = document.createElement("div");
-    var isDot = Math.random() < DOT_CHANCE;
-    var size = isDot
-      ? 2 + Math.round(Math.random() * 2)   
-      : 6 + Math.round(Math.random() * 5);  
+    var roll = Math.random();
+    var kind = roll < 0.22 ? "dot"
+             : roll < 0.52 ? "plus"
+             : roll < 0.80 ? "heart"
+             : "heart-outline";
 
-    el.className = "cursor-sparkle " + (isDot ? "cursor-sparkle--dot" : "cursor-sparkle--plus");
+    var size;
+    if (kind === "dot") {
+      size = 2 + Math.round(Math.random() * 2);
+    } else if (kind === "plus") {
+      size = 6 + Math.round(Math.random() * 5);
+    } else {
+      size = 9 + Math.round(Math.random() * 5);   // hearts need room to read
+    }
+
+    el.className = "cursor-sparkle cursor-sparkle--" + kind;
     el.style.width = size + "px";
-    el.style.height = size + "px";
+    // the pixel heart art is 8x7, so don't squash it into a square
+    el.style.height = (kind.indexOf("heart") === 0
+      ? Math.round(size * 7 / 8)
+      : size) + "px";
     el.style.background = SPARKLE_COLORS[(Math.random() * SPARKLE_COLORS.length) | 0];
     el.style.setProperty("--sx", x + "px");
     el.style.setProperty("--sy", y + "px");

@@ -61,6 +61,7 @@ html.cute-cursor-active * {
   --ink: #f4f2ee;
   --ink-dim: #b9b5ae;
   --pink: #ff2d95;
+  --pink-light: #ff8fc7;
   --pink-deep: #c4106a;
   --border: #1c1a1c;
   /* 6x6 corner mask */
@@ -112,12 +113,19 @@ html, body {
   color: var(--ink);
 }
 
+/* containing block for .bg-litter */
+body { position: relative; }
+
 body {
   font-family: Verdana, Geneva, "Segoe UI", sans-serif;
   font-size: 1.05rem;
   line-height: 1.7;
   /* tiled pixel heart pattern, near-black on black */
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='9' height='8' viewBox='0 0 9 8' fill='%230a0a0c'><rect x='2' y='1' width='1' height='1'/><rect x='3' y='1' width='1' height='1'/><rect x='5' y='1' width='1' height='1'/><rect x='6' y='1' width='1' height='1'/><rect x='1' y='2' width='1' height='1'/><rect x='2' y='2' width='1' height='1'/><rect x='3' y='2' width='1' height='1'/><rect x='4' y='2' width='1' height='1'/><rect x='5' y='2' width='1' height='1'/><rect x='6' y='2' width='1' height='1'/><rect x='7' y='2' width='1' height='1'/><rect x='1' y='3' width='1' height='1'/><rect x='2' y='3' width='1' height='1'/><rect x='3' y='3' width='1' height='1'/><rect x='4' y='3' width='1' height='1'/><rect x='5' y='3' width='1' height='1'/><rect x='6' y='3' width='1' height='1'/><rect x='7' y='3' width='1' height='1'/><rect x='2' y='4' width='1' height='1'/><rect x='3' y='4' width='1' height='1'/><rect x='4' y='4' width='1' height='1'/><rect x='5' y='4' width='1' height='1'/><rect x='6' y='4' width='1' height='1'/><rect x='3' y='5' width='1' height='1'/><rect x='4' y='5' width='1' height='1'/><rect x='5' y='5' width='1' height='1'/><rect x='4' y='6' width='1' height='1'/></svg>");
+  background: transparent;
+}
+
+html {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='9' height='8' viewBox='0 0 9 8' fill='%23141418'><rect x='2' y='1' width='1' height='1'/><rect x='3' y='1' width='1' height='1'/><rect x='5' y='1' width='1' height='1'/><rect x='6' y='1' width='1' height='1'/><rect x='1' y='2' width='1' height='1'/><rect x='2' y='2' width='1' height='1'/><rect x='3' y='2' width='1' height='1'/><rect x='4' y='2' width='1' height='1'/><rect x='5' y='2' width='1' height='1'/><rect x='6' y='2' width='1' height='1'/><rect x='7' y='2' width='1' height='1'/><rect x='1' y='3' width='1' height='1'/><rect x='2' y='3' width='1' height='1'/><rect x='3' y='3' width='1' height='1'/><rect x='4' y='3' width='1' height='1'/><rect x='5' y='3' width='1' height='1'/><rect x='6' y='3' width='1' height='1'/><rect x='7' y='3' width='1' height='1'/><rect x='2' y='4' width='1' height='1'/><rect x='3' y='4' width='1' height='1'/><rect x='4' y='4' width='1' height='1'/><rect x='5' y='4' width='1' height='1'/><rect x='6' y='4' width='1' height='1'/><rect x='3' y='5' width='1' height='1'/><rect x='4' y='5' width='1' height='1'/><rect x='5' y='5' width='1' height='1'/><rect x='4' y='6' width='1' height='1'/></svg>");
   background-color: #040404;
   background-size: 36px 32px;
 }
@@ -820,6 +828,24 @@ a:visited { color: #ff8fc7; }
   );
 }
 
+.cursor-sparkle--heart,
+.cursor-sparkle--heart-outline {
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.cursor-sparkle--heart {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 7' shape-rendering='crispEdges' fill='%23fff'%3E%3Crect x='1' y='0' width='1' height='1'/%3E%3Crect x='2' y='0' width='1' height='1'/%3E%3Crect x='5' y='0' width='1' height='1'/%3E%3Crect x='6' y='0' width='1' height='1'/%3E%3Crect x='0' y='1' width='8' height='3'/%3E%3Crect x='1' y='4' width='6' height='1'/%3E%3Crect x='2' y='5' width='4' height='1'/%3E%3Crect x='3' y='6' width='2' height='1'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 7' shape-rendering='crispEdges' fill='%23fff'%3E%3Crect x='1' y='0' width='1' height='1'/%3E%3Crect x='2' y='0' width='1' height='1'/%3E%3Crect x='5' y='0' width='1' height='1'/%3E%3Crect x='6' y='0' width='1' height='1'/%3E%3Crect x='0' y='1' width='8' height='3'/%3E%3Crect x='1' y='4' width='6' height='1'/%3E%3Crect x='2' y='5' width='4' height='1'/%3E%3Crect x='3' y='6' width='2' height='1'/%3E%3C/svg%3E");
+}
+
+.cursor-sparkle--heart-outline {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 7' shape-rendering='crispEdges' fill='%23fff'%3E%3Crect x='1' y='0' width='1' height='1'/%3E%3Crect x='2' y='0' width='1' height='1'/%3E%3Crect x='5' y='0' width='1' height='1'/%3E%3Crect x='6' y='0' width='1' height='1'/%3E%3Crect x='0' y='1' width='1' height='1'/%3E%3Crect x='3' y='1' width='1' height='1'/%3E%3Crect x='4' y='1' width='1' height='1'/%3E%3Crect x='7' y='1' width='1' height='1'/%3E%3Crect x='0' y='2' width='1' height='1'/%3E%3Crect x='7' y='2' width='1' height='1'/%3E%3Crect x='0' y='3' width='1' height='1'/%3E%3Crect x='7' y='3' width='1' height='1'/%3E%3Crect x='1' y='4' width='1' height='1'/%3E%3Crect x='6' y='4' width='1' height='1'/%3E%3Crect x='2' y='5' width='1' height='1'/%3E%3Crect x='5' y='5' width='1' height='1'/%3E%3Crect x='3' y='6' width='1' height='1'/%3E%3Crect x='4' y='6' width='1' height='1'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 7' shape-rendering='crispEdges' fill='%23fff'%3E%3Crect x='1' y='0' width='1' height='1'/%3E%3Crect x='2' y='0' width='1' height='1'/%3E%3Crect x='5' y='0' width='1' height='1'/%3E%3Crect x='6' y='0' width='1' height='1'/%3E%3Crect x='0' y='1' width='1' height='1'/%3E%3Crect x='3' y='1' width='1' height='1'/%3E%3Crect x='4' y='1' width='1' height='1'/%3E%3Crect x='7' y='1' width='1' height='1'/%3E%3Crect x='0' y='2' width='1' height='1'/%3E%3Crect x='7' y='2' width='1' height='1'/%3E%3Crect x='0' y='3' width='1' height='1'/%3E%3Crect x='7' y='3' width='1' height='1'/%3E%3Crect x='1' y='4' width='1' height='1'/%3E%3Crect x='6' y='4' width='1' height='1'/%3E%3Crect x='2' y='5' width='1' height='1'/%3E%3Crect x='5' y='5' width='1' height='1'/%3E%3Crect x='3' y='6' width='1' height='1'/%3E%3Crect x='4' y='6' width='1' height='1'/%3E%3C/svg%3E");
+}
+
 .cursor-sparkle--dot {
   border-radius: 0;
 }
@@ -963,9 +989,11 @@ a:visited { color: #ff8fc7; }
     0 var(--pcu)
   );
 
-  background-image: url("../images/profile-sky-bg.png");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
+  /* pink reskin of the site's own heart tile */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='9' height='8' viewBox='0 0 9 8' fill='%23ff2d95'><rect x='2' y='1' width='1' height='1'/><rect x='3' y='1' width='1' height='1'/><rect x='5' y='1' width='1' height='1'/><rect x='6' y='1' width='1' height='1'/><rect x='1' y='2' width='1' height='1'/><rect x='2' y='2' width='1' height='1'/><rect x='3' y='2' width='1' height='1'/><rect x='4' y='2' width='1' height='1'/><rect x='5' y='2' width='1' height='1'/><rect x='6' y='2' width='1' height='1'/><rect x='7' y='2' width='1' height='1'/><rect x='1' y='3' width='1' height='1'/><rect x='2' y='3' width='1' height='1'/><rect x='3' y='3' width='1' height='1'/><rect x='4' y='3' width='1' height='1'/><rect x='5' y='3' width='1' height='1'/><rect x='6' y='3' width='1' height='1'/><rect x='7' y='3' width='1' height='1'/><rect x='2' y='4' width='1' height='1'/><rect x='3' y='4' width='1' height='1'/><rect x='4' y='4' width='1' height='1'/><rect x='5' y='4' width='1' height='1'/><rect x='6' y='4' width='1' height='1'/><rect x='3' y='5' width='1' height='1'/><rect x='4' y='5' width='1' height='1'/><rect x='5' y='5' width='1' height='1'/><rect x='4' y='6' width='1' height='1'/></svg>");
+  background-color: #ffe6f4;
+  background-size: 36px 32px;
+  background-repeat: repeat;
   image-rendering: pixelated;
   border: 3px solid var(--pink);
   padding: 14px 10px;
@@ -1025,6 +1053,26 @@ a:visited { color: #ff8fc7; }
 }
 
 .ms-display-name a { color: inherit; text-decoration: none; }
+/* glitter title on desktop, plain Doto title on phones.
+   background-image (not <img>) so the gif isn't fetched when it's display:none */
+.ms-display-name-img {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  aspect-ratio: 705 / 79;
+  background-image: url("../images/title-glitter.gif");
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: contain;
+}
+
+.ms-display-name-text { display: none; }
+
+@media (max-width: 1023px) {
+  .ms-display-name-img { display: none; }
+  .ms-display-name-text { display: block; }
+}
+
 .ms-display-name a:hover { color: inherit; background: none; }
 
 .ms-status-quote {
@@ -1174,6 +1222,86 @@ a:visited { color: #ff8fc7; }
   .ms-sidebar-stack { order: 2; }
 }
 
+/* ---------- glitter collage behind everything (desktop only) ---------- */
+
+.bg-litter {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-litter i {
+  position: absolute;
+  display: block;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* clustered + overlapping + bleeding off the edge on purpose */
+
+/* top left */
+.bg-litter .g1  { top: -1vh;  left: -2%;   width: 210px; height: 210px; transform: rotate(-24deg); background-image: url("../images/decor/glitter-wings.gif"); }
+.bg-litter .g2  { top: 6vh;   left: 4%;    width: 120px; height: 122px; transform: rotate(16deg);  background-image: url("../images/decor/glitter-skull-heart.gif"); }
+.bg-litter .g3  { top: 13vh;  left: -1%;   width: 165px; height: 150px; transform: rotate(-9deg);  background-image: url("../images/decor/glitter-heart-trail.gif"); }
+.bg-litter .g4  { top: 21vh;  left: 5%;    width: 95px;  height: 95px;  transform: rotate(28deg);  background-image: url("../images/decor/pixel-bleeding-heart.gif"); }
+.bg-litter .g5  { top: 27vh;  left: 0%;    width: 130px; height: 116px; transform: rotate(-31deg); background-image: url("../images/decor/glitter-cracked-heart.gif"); }
+
+/* top right */
+.bg-litter .g6  { top: 2vh;   right: -3%;  width: 195px; height: 171px; transform: rotate(18deg);  background-image: url("../images/decor/glitter-heart-ring.gif"); }
+.bg-litter .g7  { top: 9vh;   right: 3%;   width: 145px; height: 126px; transform: rotate(-13deg); background-image: url("../images/decor/glitter-hearts-two.gif"); }
+.bg-litter .g8  { top: 18vh;  right: -1%;  width: 180px; height: 180px; transform: rotate(33deg);  background-image: url("../images/decor/glitter-wings.gif"); }
+.bg-litter .g9  { top: 25vh;  right: 5%;   width: 105px; height: 107px; transform: rotate(-20deg); background-image: url("../images/decor/glitter-skull-heart.gif"); }
+.bg-litter .g10 { top: 33vh;  right: 1%;   width: 115px; height: 97px;  transform: rotate(11deg);  background-image: url("../images/decor/glitter-heart-frame.gif"); }
+
+/* middle left */
+.bg-litter .g11 { top: 58vh;  left: -2%;   width: 175px; height: 159px; transform: rotate(21deg);  background-image: url("../images/decor/glitter-heart-trail.gif"); }
+.bg-litter .g12 { top: 66vh;  left: 4%;    width: 110px; height: 98px;  transform: rotate(-27deg); background-image: url("../images/decor/glitter-cracked-heart.gif"); }
+.bg-litter .g13 { top: 74vh;  left: 0%;    width: 150px; height: 132px; transform: rotate(7deg);   background-image: url("../images/decor/glitter-heart-ring.gif"); }
+.bg-litter .g14 { top: 83vh;  left: 5%;    width: 90px;  height: 90px;  transform: rotate(-15deg); background-image: url("../images/decor/pixel-bleeding-heart.gif"); }
+
+/* middle right */
+.bg-litter .g15 { top: 62vh;  right: -2%;  width: 205px; height: 205px; transform: rotate(-17deg); background-image: url("../images/decor/glitter-wings.gif"); }
+.bg-litter .g16 { top: 71vh;  right: 4%;   width: 125px; height: 108px; transform: rotate(24deg);  background-image: url("../images/decor/glitter-hearts-two.gif"); }
+.bg-litter .g17 { top: 80vh;  right: 0%;   width: 140px; height: 125px; transform: rotate(-8deg);  background-image: url("../images/decor/glitter-cracked-heart.gif"); }
+.bg-litter .g18 { top: 89vh;  right: 5%;   width: 100px; height: 84px;  transform: rotate(30deg);  background-image: url("../images/decor/glitter-heart-frame.gif"); }
+
+/* lower left */
+.bg-litter .g19 { top: 118vh; left: -1%;   width: 190px; height: 190px; transform: rotate(13deg);  background-image: url("../images/decor/glitter-wings.gif"); }
+.bg-litter .g20 { top: 127vh; left: 4%;    width: 118px; height: 120px; transform: rotate(-22deg); background-image: url("../images/decor/glitter-skull-heart.gif"); }
+.bg-litter .g21 { top: 136vh; left: 1%;    width: 160px; height: 146px; transform: rotate(26deg);  background-image: url("../images/decor/glitter-heart-trail.gif"); }
+
+/* lower right */
+.bg-litter .g22 { top: 122vh; right: -2%;  width: 170px; height: 149px; transform: rotate(-19deg); background-image: url("../images/decor/glitter-heart-ring.gif"); }
+.bg-litter .g23 { top: 132vh; right: 3%;   width: 95px;  height: 95px;  transform: rotate(9deg);   background-image: url("../images/decor/pixel-bleeding-heart.gif"); }
+.bg-litter .g24 { top: 141vh; right: 0%;   width: 135px; height: 117px; transform: rotate(-30deg); background-image: url("../images/decor/glitter-cracked-heart.gif"); }
+
+/* extra crowding up top */
+.bg-litter .g25 { top: 3vh;   left: 9%;   width: 88px;  height: 88px;  transform: rotate(41deg);  background-image: url("../images/decor/pixel-bleeding-heart.gif"); }
+.bg-litter .g26 { top: 10vh;  left: -3%;  width: 150px; height: 150px; transform: rotate(7deg);   background-image: url("../images/decor/glitter-wings.gif"); }
+.bg-litter .g27 { top: 17vh;  left: 7%;   width: 108px; height: 94px;  transform: rotate(-36deg); background-image: url("../images/decor/glitter-heart-frame.gif"); }
+.bg-litter .g28 { top: 31vh;  left: 6%;   width: 128px; height: 112px; transform: rotate(19deg);  background-image: url("../images/decor/glitter-hearts-two.gif"); }
+.bg-litter .g29 { top: 5vh;   right: 8%;  width: 92px;  height: 94px;  transform: rotate(-30deg); background-image: url("../images/decor/glitter-skull-heart.gif"); }
+.bg-litter .g30 { top: 14vh;  right: -2%; width: 145px; height: 129px; transform: rotate(25deg);  background-image: url("../images/decor/glitter-cracked-heart.gif"); }
+.bg-litter .g31 { top: 22vh;  right: 8%;  width: 100px; height: 100px; transform: rotate(-11deg); background-image: url("../images/decor/pixel-bleeding-heart.gif"); }
+.bg-litter .g32 { top: 38vh;  right: 6%;  width: 118px; height: 108px; transform: rotate(34deg);  background-image: url("../images/decor/glitter-heart-trail.gif"); }
+
+/* one band = 150vh of collage; bg-litter.js stacks copies down the whole page */
+.bg-litter-band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 150vh;
+}
+
+.bg-litter-band--flip { transform: scaleX(-1); }
+
+/* desktop only -- display:none means the gifs are never fetched on phones */
+@media (max-width: 1023px) {
+  .bg-litter { display: none; }
+}
+
 /* ---------- posts as windows (home page) ---------- */
 
 #ms-window-layer {
@@ -1191,8 +1319,8 @@ a:visited { color: #ff8fc7; }
   display: flex;
   flex-direction: column;
   background: var(--panel);
-  border: 4px solid var(--pink);
-  box-shadow: 8px 8px 0 #000, 8px 8px 0 4px var(--pink-deep);
+  border: 4px solid var(--pink-light);
+  box-shadow: 0 0 0 3px var(--pink), 8px 8px 0 #000;
   --pcu: 5px;
   clip-path: polygon(
     var(--pcu) 0, 100% 0,
@@ -1204,7 +1332,7 @@ a:visited { color: #ff8fc7; }
 }
 
 .ms-window.is-front {
-  box-shadow: 8px 8px 0 #000, 8px 8px 0 4px var(--pink);
+  box-shadow: 0 0 0 3px var(--pink), 10px 10px 0 #000;
 }
 
 .ms-window-bar {
@@ -1212,9 +1340,9 @@ a:visited { color: #ff8fc7; }
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  background: var(--pink);
+  background: var(--pink-light);
   color: #000;
-  border-bottom: 3px solid #000;
+  border-bottom: 3px solid var(--pink);
   padding: 0.45rem 0.5rem 0.45rem 0.85rem;
   cursor: grab;
   user-select: none;
