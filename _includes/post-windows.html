@@ -1,8 +1,4 @@
-{% comment %}
-  Source content for the draggable post windows on the home page.
-  Each post's rendered body is parked in a <template> (so nothing loads or
-  renders until a window is actually opened) and cloned by post-windows.js.
-{% endcomment %}
+
 <div id="ms-window-data" hidden>
   {% for post in site.posts %}
   <template class="ms-window-src"
